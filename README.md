@@ -1,7 +1,11 @@
 # Team-05
+
 Repository for project 5
+
 Tapping into community-lead software projects
+
 Clients:  Rebecca Vivian and Brad Alexander
+
 Finding interesting projects from across a range of diverse fields are so valuable for providing CS students with
 relevant, real-world projects to work on and the experience of working with "clients". However, finding ways
 to efficiently curate, organise and share project ideas within and across faculties is becoming more challenging
