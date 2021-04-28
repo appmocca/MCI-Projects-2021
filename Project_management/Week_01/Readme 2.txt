@@ -1,0 +1,1 @@
+First week, no meetings, and waiting for teammates/clients/projects  allocations.

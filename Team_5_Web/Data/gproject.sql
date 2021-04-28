@@ -20,18 +20,18 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
-  `adminId` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
-  `adminName` varchar(32) NOT NULL COMMENT '用户登录账号',
-  `adminPwd` varchar(32) NOT NULL COMMENT '用户登录密码',
-  `adminRealName` varchar(32) DEFAULT NULL COMMENT '管理员真实姓名',
-  `adminSex` tinyint(4) DEFAULT '1' COMMENT '1为男性、2为女性',
-  `adminAge` tinyint(4) DEFAULT NULL COMMENT '管理员年龄',
-  `adminPhone` varchar(11) DEFAULT NULL COMMENT '管理员联系方式',
+  `adminId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Admin id',
+  `adminName` varchar(32) NOT NULL COMMENT 'User login account',
+  `adminPwd` varchar(32) NOT NULL COMMENT 'User login password',
+  `adminRealName` varchar(32) DEFAULT NULL COMMENT 'Admin formal name',
+  `adminSex` tinyint(4) DEFAULT '1' COMMENT '1Male、2Female',
+  `adminAge` tinyint(4) DEFAULT NULL COMMENT 'Admin age',
+  `adminPhone` varchar(11) DEFAULT NULL COMMENT 'Admin contact number',
   `adminEmail` varchar(32) DEFAULT NULL,
-  `adminAddress` varchar(256) DEFAULT NULL COMMENT '管理员住址',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '创建时间',
-  `updateTime` varchar(12) DEFAULT NULL COMMENT '用户最后一次信息更新时间、默认为账户创建时间',
-  `state` tinyint(4) DEFAULT '1' COMMENT '1为一级管理员、2为二级教师管理员、3为二级学生管理员',
+  `adminAddress` varchar(256) DEFAULT NULL COMMENT 'Admin address',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'creation time',
+  `updateTime` varchar(12) DEFAULT NULL COMMENT 'User last information update time、默认为账户creation time',
+  `state` tinyint(4) DEFAULT '1' COMMENT '1Super Admin 、2Teacher Admin 、3Student Admin ',
   PRIMARY KEY (`adminId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -43,19 +43,19 @@ CREATE TABLE `admin` (
 -- ----------------------------
 DROP TABLE IF EXISTS `gproject`;
 CREATE TABLE `gproject` (
-  `gpId` int(11) NOT NULL AUTO_INCREMENT COMMENT '毕设编号',
-  `gpThrId` int(11) DEFAULT NULL COMMENT '指导教师编号',
-  `gpTitle` varchar(128) DEFAULT NULL COMMENT '毕设标题',
-  `gpContent` varchar(2048) DEFAULT NULL COMMENT '毕设内容',
-  `gpAim` varchar(128) DEFAULT NULL COMMENT '毕设目的',
-  `gpRequest` varchar(128) DEFAULT NULL COMMENT '毕设要求',
-  `gpMust` varchar(128) DEFAULT NULL COMMENT '必备知识',
-  `gpFormal` varchar(128) DEFAULT NULL COMMENT '提交形式',
-  `gpOthers` varchar(2048) DEFAULT NULL COMMENT '毕设相关备注',
-  `gpSHState` tinyint(4) DEFAULT '1' COMMENT '1为软件方向，2为硬件方向',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '创建时间',
-  `updateTime` varchar(12) DEFAULT NULL COMMENT '更新时间',
-  `state` tinyint(4) DEFAULT '1' COMMENT '0为未通过 1为通过未选择、2通过已选择、3为已确认、-1为未通过',
+  `gpId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Proposal ID',
+  `gpThrId` int(11) DEFAULT NULL COMMENT 'Supervised Professor ID',
+  `gpTitle` varchar(128) DEFAULT NULL COMMENT 'Proposal Name',
+  `gpContent` varchar(2048) DEFAULT NULL COMMENT 'Proposal Content',
+  `gpAim` varchar(128) DEFAULT NULL COMMENT 'Proposal Intension',
+  `gpRequest` varchar(128) DEFAULT NULL COMMENT 'Proposal Requirements',
+  `gpMust` varchar(128) DEFAULT NULL COMMENT 'Required Knowledge',
+  `gpFormal` varchar(128) DEFAULT NULL COMMENT 'Form of Submittion',
+  `gpOthers` varchar(2048) DEFAULT NULL COMMENT 'Proposal Relevant Note',
+  `gpSHState` tinyint(4) DEFAULT '1' COMMENT '1Software Direction，2Hardware Direction',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'Creation Time',
+  `updateTime` varchar(12) DEFAULT NULL COMMENT 'updateTime',
+  `state` tinyint(4) DEFAULT '1' COMMENT '0fail to pass 1passed but not assigned、2passed and assigned、3passed、-1fail to pass',
   PRIMARY KEY (`gpId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
@@ -67,35 +67,35 @@ CREATE TABLE `gproject` (
 -- ----------------------------
 DROP TABLE IF EXISTS `major`;
 CREATE TABLE `major` (
-  `majorId` int(11) NOT NULL AUTO_INCREMENT COMMENT '专业id',
-  `majorName` varchar(64) DEFAULT NULL COMMENT '专业名称',
+  `majorId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Major ID',
+  `majorName` varchar(64) DEFAULT NULL COMMENT 'Major Name',
   PRIMARY KEY (`majorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of major
 -- ----------------------------
-INSERT INTO `major` VALUES ('1', '计算机科学与技术');
-INSERT INTO `major` VALUES ('2', '物联网');
-INSERT INTO `major` VALUES ('3', '通信工程');
-INSERT INTO `major` VALUES ('4', '电子科学与技术');
-INSERT INTO `major` VALUES ('5', '电子信息工程');
-INSERT INTO `major` VALUES ('6', '电子信息科学与技术');
+INSERT INTO `major` VALUES ('1', 'CS');
+INSERT INTO `major` VALUES ('2', 'IoT');
+INSERT INTO `major` VALUES ('3', 'Communication');
+INSERT INTO `major` VALUES ('4', 'Electronic Science and Technology');
+INSERT INTO `major` VALUES ('5', 'Electronic Information Engineering');
+INSERT INTO `major` VALUES ('6', 'Electronic Information Science and Technology');
 
 -- ----------------------------
 -- Table structure for `message`
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
-  `msgId` int(11) NOT NULL AUTO_INCREMENT COMMENT '消息id',
-  `msgParentId` int(11) DEFAULT NULL COMMENT '用于消息回复',
-  `msgFromId` int(11) DEFAULT NULL COMMENT '消息发送者',
-  `msgAccessId` int(11) DEFAULT NULL COMMENT '消息接收者',
-  `msgContent` varchar(1024) DEFAULT NULL COMMENT '消息内容',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '消息发送时间',
-  `state` tinyint(4) DEFAULT '1' COMMENT '1学生->老师 -1老师到学生  2管理员给学生 -2管理员给老师',
-  `showStu` tinyint(4) DEFAULT '1' COMMENT '1为显示 -1为不显示',
-  `showThr` tinyint(4) DEFAULT '1' COMMENT '1为显示 -1为不显示',
+  `msgId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Message ID',
+  `msgParentId` int(11) DEFAULT NULL COMMENT 'Used for replying',
+  `msgFromId` int(11) DEFAULT NULL COMMENT 'Message Sender',
+  `msgAccessId` int(11) DEFAULT NULL COMMENT 'Message Receiver',
+  `msgContent` varchar(1024) DEFAULT NULL COMMENT 'Message Content',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'Message Sent time',
+  `state` tinyint(4) DEFAULT '1' COMMENT '1Student->Teacher -1Teacher->Studetn  2Admin->Student -2Admin->Teacher',
+  `showStu` tinyint(4) DEFAULT '1' COMMENT '1Visiable -1Invisiable',
+  `showThr` tinyint(4) DEFAULT '1' COMMENT '1Visiable -1Invisiable',
   PRIMARY KEY (`msgId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
@@ -107,7 +107,7 @@ CREATE TABLE `message` (
 -- ----------------------------
 DROP TABLE IF EXISTS `plan`;
 CREATE TABLE `plan` (
-  `planId` int(11) NOT NULL AUTO_INCREMENT COMMENT '计划列表Id',
+  `planId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Plan List ID',
   `plnStuId` int(11) NOT NULL,
   `plnThrId` int(11) NOT NULL,
   `plnGpId` int(11) NOT NULL,
@@ -145,13 +145,13 @@ CREATE TABLE `plan` (
 -- ----------------------------
 DROP TABLE IF EXISTS `stlinks`;
 CREATE TABLE `stlinks` (
-  `stlId` int(11) NOT NULL AUTO_INCREMENT COMMENT '毕设选择关系表',
-  `stlSpId` int(11) DEFAULT NULL COMMENT '毕设Id',
-  `stlThrId` int(11) DEFAULT NULL COMMENT '教师Id',
-  `stlStuId` int(11) DEFAULT NULL COMMENT '学生ID',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '创建时间',
-  `updateTime` varchar(12) DEFAULT NULL COMMENT '更新时间',
-  `state` tinyint(4) DEFAULT '1' COMMENT '1为选中、2为确认、3为放弃',
+  `stlId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Proposal Selection Relationship Table',
+  `stlSpId` int(11) DEFAULT NULL COMMENT 'Proposal ID',
+  `stlThrId` int(11) DEFAULT NULL COMMENT 'Professor ID',
+  `stlStuId` int(11) DEFAULT NULL COMMENT 'Student ID',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'Creation Time',
+  `updateTime` varchar(12) DEFAULT NULL COMMENT 'Update TIme',
+  `state` tinyint(4) DEFAULT '1' COMMENT '1Chosen、2Comfirmed、3Abandon',
   PRIMARY KEY (`stlId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
@@ -164,17 +164,17 @@ CREATE TABLE `stlinks` (
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `stuId` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生id',
-  `stuCard` varchar(32) NOT NULL COMMENT '用户登录账号 为学生学号',
-  `stuPwd` varchar(32) NOT NULL COMMENT '用户登录密码',
-  `stuRealName` varchar(32) DEFAULT NULL COMMENT '学生真实姓名',
-  `stuSex` tinyint(4) DEFAULT '1' COMMENT '1为男性、2为女性',
-  `stuAge` tinyint(4) DEFAULT NULL COMMENT '学生年龄',
-  `stuPhone` varchar(11) DEFAULT NULL COMMENT '学生联系方式',
+  `stuId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Student ID',
+  `stuCard` varchar(32) NOT NULL COMMENT 'User login account is Student ID',
+  `stuPwd` varchar(32) NOT NULL COMMENT 'User login password',
+  `stuRealName` varchar(32) DEFAULT NULL COMMENT 'Student name',
+  `stuSex` tinyint(4) DEFAULT '1' COMMENT '1 Male, 2 Female',
+  `stuAge` tinyint(4) DEFAULT NULL COMMENT 'Student age',
+  `stuPhone` varchar(11) DEFAULT NULL COMMENT 'Student contact number',
   `stuEmail` varchar(32) DEFAULT NULL,
-  `stuMajor` tinyint(4) DEFAULT NULL COMMENT '学生专业',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '创建时间',
-  `updateTime` varchar(12) DEFAULT NULL COMMENT '用户最后一次信息更新时间、默认为账户创建时间',
+  `stuMajor` tinyint(4) DEFAULT NULL COMMENT 'Student facalty',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'Account create time',
+  `updateTime` varchar(12) DEFAULT NULL COMMENT 'User info last updated time, default time = account open time',
   `state` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`stuId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
@@ -188,20 +188,20 @@ CREATE TABLE `student` (
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
-  `thrId` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `thrName` varchar(32) NOT NULL COMMENT '用户登录账号',
-  `thrPwd` varchar(32) NOT NULL COMMENT '用户登录密码',
-  `thrRealName` varchar(32) DEFAULT NULL COMMENT '用户真实姓名',
-  `thrSex` tinyint(4) DEFAULT '1' COMMENT '1为男性、2为女性',
-  `thrAge` tinyint(4) DEFAULT NULL COMMENT '用户年龄',
-  `thrStudy` varchar(128) DEFAULT NULL COMMENT '用户研究方向',
+  `thrId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User ID',
+  `thrName` varchar(32) NOT NULL COMMENT 'User login account',
+  `thrPwd` varchar(32) NOT NULL COMMENT 'User login password',
+  `thrRealName` varchar(32) DEFAULT NULL COMMENT 'User formal name',
+  `thrSex` tinyint(4) DEFAULT '1' COMMENT '1Male、2Female',
+  `thrAge` tinyint(4) DEFAULT NULL COMMENT 'User age',
+  `thrStudy` varchar(128) DEFAULT NULL COMMENT 'User Research Direction',
   `thrEmail` varchar(32) DEFAULT NULL,
-  `thrPhone` varchar(11) DEFAULT NULL COMMENT '用户联系方式',
+  `thrPhone` varchar(11) DEFAULT NULL COMMENT 'User contact number',
   `showState` char(4) DEFAULT NULL COMMENT 'phone, email, address, study',
-  `thrAddress` varchar(256) DEFAULT NULL COMMENT '用户办公地址',
-  `createTime` varchar(12) DEFAULT NULL COMMENT '创建时间',
-  `updateTime` varchar(12) DEFAULT NULL COMMENT '用户最后一次信息更新时间、默认为账户创建时间',
-  `state` tinyint(4) DEFAULT '1' COMMENT '1正常 -1为回收站',
+  `thrAddress` varchar(256) DEFAULT NULL COMMENT 'User office address',
+  `createTime` varchar(12) DEFAULT NULL COMMENT 'creation time',
+  `updateTime` varchar(12) DEFAULT NULL COMMENT 'User last information update time、dafault is creation time',
+  `state` tinyint(4) DEFAULT '1' COMMENT '1Normal -1Trash',
   PRIMARY KEY (`thrId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 

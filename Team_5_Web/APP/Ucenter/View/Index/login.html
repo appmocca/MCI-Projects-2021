@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en-AU">
 <head>
-    <title>用户登录</title>
-    <meta name="keywords" content="关键词" />
-    <meta name="description" content="描述" />
+    <title>User Login</title>
+    <meta name="keywords" content="keywords" />
+    <meta name="description" content="description" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="__CSS__/pintuer.css">
@@ -20,40 +20,40 @@
 <body>
     <div class="container">
         <div class="loginBox">
-            <h2>毕设选题系统登录</h2>
+            <h2>Proposal Section System Login</h2>
             <br>
             <form action="{:U('Index/doLogin')}"  class="form-x" method="post">
                 <div class="form-group">
-                    <label class="label">账户：</label>
+                    <label class="label">Account:</label>
                     <div class="field field-icon">
                         <span class="icon icon-user"></span>
-                        <input type="text" class="input input-auto" id="usrname" name="usrname" size="30" placeholder="登陆账号" data-validate="required:请填写登陆账号" /> 
+                        <input type="text" class="input input-auto" id="usrname" name="usrname" size="30" placeholder="loginAcc" data-validate="required:Please input login account" /> 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="label">密码：</label>
+                    <label class="label">Password:</label>
                     <div class="field field-icon">
                         <span class="icon icon-key"></span>
-                        <input type="password" class="input input-auto" id="usrpwd" name="usrpwd" size="30" placeholder="登录密码" data-validate="required:请填写登录密码,length#>4:密码最少不得小于4位" /> 
+                        <input type="password" class="input input-auto" id="usrpwd" name="usrpwd" size="30" placeholder="loginPwd" data-validate="required:please input login password,length#>4:at least 4 characters" /> 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="label">类型：</label>
+                    <label class="label">Type:</label>
                     <div class="button-group radio">
                         <label class="button active">
                             <input name="flag" value="s" checked="checked" type="radio">
-                            <span class="icon icon-check text-green"></span> 学生
+                            <span class="icon icon-check text-green"></span> Student
                         </label> 
                         <label class="button">
                             <input name="flag" value="t" type="radio">
-                            <span class="icon icon-check text-blue"></span> 老师
+                            <span class="icon icon-check text-blue"></span> Teacher
                         </label> 
                     </div>
                 </div>
                 <div class="form-button">
-                    <button type="submit" class="button bg-green">登录</button>
+                    <button type="submit" class="button bg-green">Login</button>
                     &nbsp;&nbsp;
-                    <button type="reset" class="button bg-mix">重置</button>
+                    <button type="reset" class="button bg-mix">Reset</button>
                 </div>
             </form>
         </div>

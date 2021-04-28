@@ -7,14 +7,14 @@
         }
 
         /*
-         *  2015年3月8日22:11:36
-         *  后台管理中心-教师列表
+         *  21 Apr 2021 22:11:36
+         *  back-end manage centre -teacher list
          */
         public function index($thrCard = null, $thrName = null, $thrSex = null, $thrMajor = null){
             $titles = array();
-            $titles['prt'] = "教师";
+            $titles['prt'] = "teacher ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "教师列表";
+            $titles['son'] = "teacher list";
             $this->assign("titles", $titles);
 
             $obj = M("major");
@@ -37,40 +37,40 @@
             }
             $this->assign("seachData", $seachData);
             
-            $obj    = M('teacher'); // 实例化User对象
-            $count  = $obj->where($where)->Count();// 查询满足要求的总记录数
-            $Page   = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-            $show   = $Page->show();// 分页显示输出// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-            $usrList = $obj->field('thrId, thrName, thrRealName, thrSex, thrStudy, thrPhone')->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
-            $this->assign('usrList', $usrList);// 赋值数据集
-            $this->assign('page',$show);// 赋值分页输出
+            $obj    = M('teacher'); // Instantiate the User object
+            $count  = $obj->where($where)->Count();// Query the total number of records meeting the requirements
+            $Page   = new \Think\Page($count,10);// Instantiate the total number of incoming records and the number of records displayed per page of the paging class (25)
+            $show   = $Page->show();// Paging display output//Paging data query Note that the parameters of the limit method should use the attributes of the Page class
+            $usrList = $obj->field('thrId, thrName, thrRealName, thrSex, thrStudy, thrPhone')->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();// Assigned data set
+            $this->assign('usrList', $usrList);/// Assignment paging output
+            $this->assign('page',$show); // Output template
 
             $this->display();
         }
 
         /*
-         *  2015年3月8日22:10:47
-         *  后台管理中心-新增教师
+         *  21 Apr 2021 22:10:47
+         *  back-end manage centre -adding teacher 
          */
         public function add(){
             $titles = array();
-            $titles['prt'] = "教师";
+            $titles['prt'] = "teacher ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "新增教师";
+            $titles['son'] = "adding teacher ";
             $this->assign("titles", $titles);
 
             $this->display();
         }
 
         /*
-         *  2015年3月8日22:10:47
-         *  后台管理中心-教师数据回收站
+         *  21 Apr 2021 22:10:47
+         *  back-end manage centre -teacher data trash
          */
         public function recycle(){
             $titles = array();
-            $titles['prt'] = "教师";
+            $titles['prt'] = "teacher ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "回收站";
+            $titles['son'] = "trash";
             $this->assign("titles", $titles);
 
             $obj = M('teacher');
@@ -82,8 +82,8 @@
         }
 
         /*
-         *  2015年3月11日9:54:13
-         *  后台管理中心-数据库插入教师数据
+         *  21 Apr 2021 9:54:13
+         *  back-end manage centre -library insert teacher data 
          */
         public function addUsr(){
             if(IS_POST){
@@ -95,7 +95,7 @@
                 $obj = M('teacher');
 
                 if($obj->where($data)->Count() == 1){
-                    $this->error("已存在与之姓名、性别相同的教师，本次插入失败");
+                    $this->error("found same account details, insertion failure");
                     return ;
                 }
                 $data['thrPwd'] = isset($pwd) && $pwd != "" ? md5($pwd) : md5(888888);
@@ -104,16 +104,16 @@
                 $data['createTime'] = $time;
 
                 if($obj->add($data)){
-                    $this->success("教师信息新增成功");
+                    $this->success("teacher infomation adding success");
                 }else{
-                    $this->error("教师信息新增失败，请检查");
+                    $this->error("teacher infomation adding failure, please check your actions");
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:35:33
-         *  查看教师详情
+         *  21 Apr 2021 14:35:33
+         *  view teacher details
          */
         public function checkDetail(){
             if(IS_POST){
@@ -131,12 +131,12 @@
         }
 
         /*
-         *  2015年3月10日10:35:49
-         *  重置教师密码
+         *  21 Apr 2021 10:35:49
+         *  reset teacher password
          */
         public function reset($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('teacher');
                 $where['thrId'] = $id;
@@ -145,20 +145,20 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('教师密码重置成功');
+                    $this->success('teacher password reset success');
                 }else{
-                    $this->error('教师密码重置失败，请检查');
+                    $this->error('teacher password reset failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日13:34:25
-         *  将教师移动至回收站
+         *  21 Apr 2021 13:34:25
+         *  move teacher account to trash
          */
         public function toRecycle($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('teacher');
                 $where['thrId'] = $id;
@@ -167,20 +167,20 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('删除成功，已将该教师移动至回收站');
+                    $this->success('detele success，already moved teacher account to trash');
                 }else{
-                    $this->error('删除失败，请检查');
+                    $this->error('detele failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:13:23
-         *  将教师状态恢复
+         *  21 Apr 2021 14:13:23
+         *  restore teacher status
          */
         public function recoverOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('teacher');
                 $where['thrId'] = $id;
@@ -189,29 +189,29 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('恢复成功，已将该教师恢复至正常');
+                    $this->success('restore success，teacher status restore success');
                 }else{
-                    $this->error('恢复失败，请检查');
+                    $this->error('restore failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:14:12
-         *  将教师物理删除
+         *  21 Apr 2021 14:14:12
+         *  delete teacher account
          */
         public function clearOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('teacher');
                 $where['thrId'] = $id;
 
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success('清除成功成功');
+                    $this->success('detele success');
                 }else{
-                    $this->error('清除失败，请检查');
+                    $this->error('detele failure, please check your actions');
                 }
             }
         }

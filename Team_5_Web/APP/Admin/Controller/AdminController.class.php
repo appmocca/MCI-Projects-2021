@@ -13,8 +13,8 @@
         }
 
         /*
-         *  2015年3月8日22:13:36
-         *  后台管理中心-首页
+         *  21 Apr 2021 22:13:36
+         *  back-end managae centre - index page
          */
         public function index(){
             $Data = array();
@@ -31,7 +31,7 @@
             $titles = array();
             $titles['prt'] = null;
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "登录信息";
+            $titles['son'] = "Login info";
             $this->assign("titles", $titles);
 
             $countList['usr'] = M('admin')->Count();
@@ -45,8 +45,8 @@
         }
 
         /*
-         *  2015年3月8日22:13:43
-         *  后台管理中心-注销
+         *  21 Apr 2021 22:13:36
+         *  back-end managae centre - logout
          */
         public function loginout(){
             session(null);

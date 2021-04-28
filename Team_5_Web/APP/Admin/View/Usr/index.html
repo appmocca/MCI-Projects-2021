@@ -2,22 +2,22 @@
     <div class="admin">
         <form method="post">
         <div class="panel admin-panel">
-            <div class="panel-head"><strong>内容列表</strong></div>
+            <div class="panel-head"><strong>Content list</strong></div>
             <div class="padding border-bottom">
-                <input type="button" class="button button-small border-green" value="新增用户" onclick="javascript:window.location.href='{:U('Usr/add')}';" />
-                <input type="button" class="button button-small border-blue" value="回收站" onclick="javascript:window.location.href='{:U('Usr/recycle')}'" />
+                <input type="button" class="button button-small border-green" value="Add users" onclick="javascript:window.location.href='{:U('Usr/add')}';" />
+                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='{:U('Usr/recycle')}'" />
             </div>
 
             <table class="table table-hover">
                 <tr>
-                    <th width="80">用户编号</th>
-                    <th width="110">用户名称</th>
-                    <th width="110">真实姓名</th>
-                    <th width="110">用户性别</th>
-                    <th width="120">联系方式</th>
-                    <th width="*">邮件地址</th>
-                    <th width="140">用户组</th>
-                    <th width="180">操作</th>
+                    <th width="80">User number</th>
+                    <th width="110">name of user</th>
+                    <th width="110">Real name</th>
+                    <th width="110">User gender</th>
+                    <th width="120">contact way</th>
+                    <th width="*">e-mail address</th>
+                    <th width="140">user group</th>
+                    <th width="180">operate</th>
                 </tr>
                 <volist name="usrList" id="index">
                 <tr>
@@ -25,20 +25,20 @@
                     <td>{$index.adminName}</td>
                     <td>{$index.adminRealName}</td>
                     <td>
-                        <?php echo $index['adminSex'] == 1 ? '男' : '女'; ?>
+                        <?php echo $index['adminSex'] == 1 ? 'male' : 'female'; ?>
                     </td>
                     <td>{$index.adminPhone}</td>
                     <td>{$index.adminEmail}</td>
                     <td>
                         <?php switch($index['state']){
                             case 1:
-                                echo "系统管理员";
+                                echo "system administrator";
                                 break;
                             case 2:
-                                echo "教师管理员";
+                                echo "Teacher administrator";
                                 break;
                             case 3:
-                                echo "学生管理员";
+                                echo "Student administrator";
                                 break;
                             break;
                             }
@@ -46,9 +46,9 @@
                     </td>
                     <td>
                         <input type="hidden" name="id" value="{$index.adminId}"/>
-                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">查看</a>
-                        <a class="button border-blue button-little" name="reset" href="#">重置密码</a>
-                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">删除</a>
+                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">examine</a>
+                        <a class="button border-blue button-little" name="reset" href="#">Reset password</a>
+                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">delete</a>
                     </td>
                 </tr>
                 </volist>
@@ -59,25 +59,25 @@
         </div>
         </form>
         <br />
-        <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">郑少卓</a>构建   </p>
+        <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
     </div>
 
     <div id="checkdialog"> 
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>用户详情</strong> 
+                <strong>User details</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>用户编号：  <a class="adminId" href="#"></a></p>
-                    <p>用户账号：  <a class="adminName" href="#"></a></p>
-                    <p>真实姓名：  <a class="adminRealName" href="#"></a></p>
-                    <p>用户性别：  <a class="adminSex" href="#"></a></p>
-                    <p>用户年龄：  <a class="adminAge" href="#"></a></p>
-                    <p>联系方式：  <a class="adminPhone" href="#"></a></p>
-                    <p>邮箱地址：  <a class="adminEmail" href="#"></a></p>
-                    <p>家庭住址：  <a class="adminAddress" href="#"></a></p>
+                    <p>User number：  <a class="adminId" href="#"></a></p>
+                    <p>user account：  <a class="adminName" href="#"></a></p>
+                    <p>Real name：  <a class="adminRealName" href="#"></a></p>
+                    <p>User gender：  <a class="adminSex" href="#"></a></p>
+                    <p>User age：  <a class="adminAge" href="#"></a></p>
+                    <p>contact way：  <a class="adminPhone" href="#"></a></p>
+                    <p>e-mail address：  <a class="adminEmail" href="#"></a></p>
+                    <p>home address：  <a class="adminAddress" href="#"></a></p>
                 </div>
             </div> 
         </div> 
@@ -87,16 +87,16 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>用户操作</strong> 
+                <strong>User operation</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>是否确认要删除该用户？</p>
-                    <p>O(∩_∩)O~~(为可恢复删除)</p>
+                    <p>Are you sure you want to delete this user?</p>
+                    <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
                 </div>
         
-                <input type="button" class="button bg-main" value="删了吧" onclick="javascript:recycle();" />
-                <button class="button bg-yellow" type="reset">反悔了</button>
+                <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
+                <button class="button bg-yellow" type="reset">regret</button>
             </div> 
         </div> 
     </div>
@@ -121,7 +121,7 @@
                         if(data.state == true){
                             for(var x in data.detail){
                                 if(x == 'adminSex'){
-                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? '男' : '女');
+                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'male' : 'female');
                                 }else{
                                     $(".dialog ." + x + "").html(data.detail[x]);
                                 }

@@ -7,14 +7,14 @@
         }
 
         /*
-         *  2015年3月8日22:14:22
-         *  后台管理中心-新增教师
+         *  21 Apr 2021 22:14:22
+         *  back-end manage centre -adding teacher
          */
         public function index($stuCard = null, $stuName = null, $stuSex = null, $stuMajor = null){
             $titles = array();
-            $titles['prt'] = "学生";
+            $titles['prt'] = "student ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "学生列表";
+            $titles['son'] = "student list";
             $this->assign("titles", $titles);
 
             $obj = M("major");
@@ -41,39 +41,39 @@
             }
             $this->assign("seachData", $seachData);
             
-            $obj    = M('student'); // 实例化User对象
-            $count  = $obj->where($where)->Count();// 查询满足要求的总记录数
-            $Page   = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-            $show   = $Page->show();// 分页显示输出// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+            $obj    = M('student'); // Instantiate the User object
+            $count  = $obj->where($where)->Count();// Query the total number of records meeting the requirements
+            $Page   = new \Think\Page($count,10);// Instantiate the total number of incoming records and the number of records displayed per page of the paging class (25)
+            $show   = $Page->show();// Paging display output//Paging data query Note that the parameters of the limit method should use the attributes of the Page class
             $usrList = $obj->join('left join major on student.stuMajor = major.majorId')->field('stuId, stuCard, stuRealName, stuSex, stuPhone, major.majorName')->order('stuCard asc')->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
-            $this->assign('usrList', $usrList);// 赋值数据集
-            $this->assign('page',$show);// 赋值分页输出
-            $this->display(); // 输出模板
+            $this->assign('usrList', $usrList);// Assigned data set
+            $this->assign('page',$show);// Assignment paging output
+            $this->display(); // Output template
         }
 
         /*
-         *  2015年3月8日22:14:57
-         *  后台管理中心-新增学生
+         *  21 Apr 2021 22:14:57
+         *  back-end manage centre -adding student 
          */
         public function add(){
             $titles = array();
-            $titles['prt'] = "学生";
+            $titles['prt'] = "student ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "新增学生";
+            $titles['son'] = "adding student ";
             $this->assign("titles", $titles);
 
             $this->display();
         }
 
         /*
-         *  2015年3月8日22:15:02
-         *  后台管理中心-回收站
+         *  21 Apr 2021 22:15:02
+         *  back-end manage centre -trash
          */
         public function recycle(){
             $titles = array();
-            $titles['prt'] = "学生";
+            $titles['prt'] = "student ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "回收站";
+            $titles['son'] = "trash";
             $this->assign("titles", $titles);
 
             $obj = M('student');
@@ -84,8 +84,8 @@
         }
 
         /*
-         *  2015年3月10日15:49:35
-         *  后台管理中心-数据库插入学生数据
+         *  21 Apr 2021 15:49:35
+         *  back-end manage centre - library insert student data
          */
         public function addUsr(){
             if(IS_POST){
@@ -93,7 +93,7 @@
                 if($flag == 'single'){
                     $account = I("post.singleAccount");
                     if(!is_numeric($account)){
-                        $this->error('登陆账号为学号，纯数字，请检查你的输入');
+                        $this->error('login account is student ID in digits, please check your input');
                         return ;
                     }
 
@@ -110,16 +110,16 @@
 
                     $obj = M('student');
                     if($obj->where(array('stuCard' => $account))->Count() == 1){
-                        $this->error('该账号已存在于数据库，无法进行添加操作');
+                        $this->error('This account has already stored in the library, cannot add');
                         return;
                     }
 
 
                     $flag = $obj->add($data);
                     if($flag){
-                        $this->success("学生新增成功");
+                        $this->success("student adding success");
                     }else{
-                        $this->error("学生新增失败");
+                        $this->error("student adding failure");
                     }
                 }else{
                     $account = I("post.mulAccount");
@@ -154,22 +154,22 @@
 
                         if($state){
                             $obj->commit();
-                            $this->success("批量添加学生成功, 重复数量共{$repeatCount}, 已跳过");
+                            $this->success("bulk adding student success, repet number is {$repeatCount}, has jumped");
                         }else{
                             $obj->rollback();
-                            $this->error("批量添学生失败");
+                            $this->error("bulk adding student failure");
                         }
 
                     }else{
-                        $this->error("登陆账号格式或者范围有误，请检查");
+                        $this->error("login account format or range is wrong, please check your input");
                     }
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:35:33
-         *  查看学生详情
+         *  21 Apr 2021 14:35:33
+         *  view student details
          */
         public function checkDetail(){
             if(IS_POST){
@@ -187,12 +187,12 @@
         }
 
         /*
-         *  2015年3月10日10:35:49
-         *  重置学生密码
+         *  21 Apr 2021 10:35:49
+         *  reset student password
          */
         public function reset($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('fail to change, please check your actions');
             }else{
                 $obj = M('student');
                 $where['stuId'] = $id;
@@ -201,20 +201,20 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('学生密码重置成功');
+                    $this->success('student password reset success');
                 }else{
-                    $this->error('学生密码重置失败，请检查');
+                    $this->error('student password reset failure, please your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日13:34:25
-         *  将学生移动至回收站
+         *  21 Apr 2021 13:34:25
+         *  move student account  to trash
          */
         public function toRecycle($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('fail to change, please check your actions');
             }else{
                 $obj = M('student');
                 $where['stuId'] = $id;
@@ -223,20 +223,20 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('删除成功，已将该学生移动至回收站');
+                    $this->success('delete success, student account has been moved to trsh');
                 }else{
-                    $this->error('删除失败，请检查');
+                    $this->error('delete failure, please your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:13:23
-         *  将学生状态恢复
+         *  21 Apr 2021 14:13:23
+         *  restore student status
          */
         public function recoverOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('fail to change, please check your actions');
             }else{
                 $obj = M('student');
                 $where['stuId'] = $id;
@@ -245,29 +245,29 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('恢复成功，已将该学生恢复至正常');
+                    $this->success('resore success, the student resore has been done');
                 }else{
-                    $this->error('恢复失败，请检查');
+                    $this->error('resore failure, please your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:14:12
-         *  将学生物理删除
+         *  21 Apr 2021 14:14:12
+         *  delete student account
          */
         public function clearOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('fail to change, please check your actions');
             }else{
                 $obj = M('student');
                 $where['stuId'] = $id;
 
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success('清除成功成功');
+                    $this->success('cleae success');
                 }else{
-                    $this->error('清除失败，请检查');
+                    $this->error('cleae failure, please your actions');
                 }
             }
         }

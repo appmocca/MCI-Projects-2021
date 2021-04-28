@@ -13,7 +13,7 @@ class IndexController extends Controller {
         session(null);
 
     	if($flag == "s"){
-    	//学生登录
+    	//Student login
             $obj = M('student');
             $where['stuCard'] = $usrname;
             $where['stuPwd'] = md5($usrpwd);
@@ -28,11 +28,11 @@ class IndexController extends Controller {
 
     			$this->redirect("Student/index");
     		}else{
-    			$this->error("用户名或密码不正确");
+    			$this->error("Wrong combination");
     		}
 
     	}else if($flag == "t"){
-    	//教师登录
+    	//Teacher Login
             $obj = M('teacher');
             $where['thrName'] = $usrname;
             $where['thrPwd'] = md5($usrpwd);
@@ -47,7 +47,7 @@ class IndexController extends Controller {
     			
     			$this->redirect("Teacher/index");
     		}else{
-    			$this->error("用户名或密码不正确");
+    			$this->error("Wrong combination");
     		}
     	}
 

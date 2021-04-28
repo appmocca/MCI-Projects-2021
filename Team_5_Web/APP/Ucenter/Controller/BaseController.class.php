@@ -7,7 +7,7 @@
     	
 		$flag = session('FLAG') ? true : false;
 		if(!$flag){
-			$this->error("请先行登陆", U('Index/index'));
+			$this->error("Please login first", U('Index/index'));
 		}else{
 			$this->assign('usrName', session('NAME'));
 		}

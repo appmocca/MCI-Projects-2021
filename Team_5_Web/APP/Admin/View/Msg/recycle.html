@@ -2,22 +2,21 @@
     <div class="admin">
         <form method="post">
         <div class="panel admin-panel">
-            <div class="panel-head"><strong>内容列表</strong></div>
+            <div class="panel-head"><strong>Content list</strong></div>
             <div class="padding border-bottom">
-                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-                <input type="button" class="button button-small border-yellow dialogs" value="批量恢复" name="recoverallbtn" href="#" data-toggle="click" data-target="#recoverdialog" data-mask="1" data-width="30%" />
-                <input type="button" class="button button-small border-blue dialogs" value="批量清除" name="clearallbtn" href="#" data-toggle="click" data-target="#cleardialog" data-mask="1" data-width="30%" />
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="check all" />
+                <input type="button" class="button button-small border-yellow dialogs" value="Batch recovery" name="recoverallbtn" href="#" data-toggle="click" data-target="#recoverdialog" data-mask="1" data-width="30%" />
+                <input type="button" class="button button-small border-blue dialogs" value="Batch cleaning" name="clearallbtn" href="#" data-toggle="click" data-target="#cleardialog" data-mask="1" data-width="30%" />
                 <div id="recoverdialog"> 
                     <div class="dialog"> 
                         <div class="dialog-head"> 
                             <span class="close rotate-hover"></span> 
-                            <strong>用户批量恢复</strong> 
+                            <strong>User batch recovery</strong> 
                         </div> 
                         <div class="dialog-body">
-                            <p>是否确认要恢复以选中用户？</p>
-                            <p>O(∩_∩)O~~(大不了再删除)</p>
+                            <p>Are you sure you want to restore to select users?</p>
 
-                            <input type="button" class="button bg-main" value="全恢复" onclick="javascript:recoverall();" />
+                            <input type="button" class="button bg-main" value="restoreall" onclick="javascript:recoverall();" />
                         </div> 
                     </div> 
                 </div>
@@ -25,27 +24,27 @@
                     <div class="dialog"> 
                         <div class="dialog-head"> 
                             <span class="close rotate-hover"></span> 
-                            <strong>用户批量清除</strong> 
+                            <strong>User batch clearing</strong> 
                         </div> 
                         <div class="dialog-body">
-                            <p>是否确认要清除以选中用户？</p>
-                            <p>:( (为不可恢复删除)</p>
+                            <p>Are you sure you want to clear to select users?</p>
+                            <p>:( (Delete as unrecoverable)</p>
 
-                            <input type="button" class="button bg-main" value="全清除" onclick="javascript:clearall();" />
+                            <input type="button" class="button bg-main" value="clearall" onclick="javascript:clearall();" />
                         </div> 
                     </div> 
                 </div>
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="45">选择</th>
-                    <th width="110">用户名称</th>
-                    <th width="110">用户性别</th>
-                    <th width="120">联系方式</th>
-                    <th width="*">邮件地址</th>
-                    <th width="120">最近登录</th>
-                    <th width="140">用户组</th>
-                    <th width="100">操作</th>
+                    <th width="45">select</th>
+                    <th width="110">name of user</th>
+                    <th width="110">User gender</th>
+                    <th width="120">contact way</th>
+                    <th width="*">e-mail address</th>
+                    <th width="120">Recently logged in</th>
+                    <th width="140">user group</th>
+                    <th width="100">operate</th>
                 </tr>
                 <volist name="usr_list" id="index">
                 <tr>
@@ -53,15 +52,15 @@
                         <input type="checkbox" name="id" value="{$index.id}" />
                     </td>
                     <td>index.name</td>
-                    <td><?php echo $index['sex'] == 1 ? '男' : '女'; ?></td>
+                    <td><?php echo $index['sex'] == 1 ? 'male' : 'female'; ?></td>
                     <td>index.phone</td>
                     <td>index.email</td>
                     <td>index.lasttime</td>
                     <td>index.levelname</td>
                     <td>
                         <input type="hidden" value="index.id" />
-                        <a class="button border-blue button-little" name="recover" href="#">恢复</a> 
-                        <a class="button border-yellow button-little" name="clear" href="#">清除</a>
+                        <a class="button border-blue button-little" name="recover" href="#">recover</a> 
+                        <a class="button border-yellow button-little" name="clear" href="#">clear away</a>
                     </td>
                 </tr>
                 </volist>
@@ -72,22 +71,22 @@
         </div>
         </form>
         <br />
-        <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">郑少卓</a>构建   </p>
+        <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
     </div>
     <div id="mydialog"> 
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>用户操作</strong> 
+                <strong>User operation</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>是否确认要删除该用户？</p>
-                    <p>O(∩_∩)O~~(为可恢复删除)</p>
+                    <p>Are you sure you want to delete this user?</p>
+                    <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
                 </div>
         
-                <input type="button" class="button bg-main" value="删了吧" onclick="javascript:recycle();" />
-                <button class="button bg-yellow" type="reset">反悔了</button>
+                <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
+                <button class="button bg-yellow" type="reset">regret</button>
             </div> 
         </div> 
     </div>

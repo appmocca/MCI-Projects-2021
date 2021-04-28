@@ -7,14 +7,14 @@
         }
 
         /*
-         *  2015年3月8日22:18:06
-         *  后台管理中心-用户列表
+         *  21 Apr 2021 22:18:06
+         *  back-end manage centre - user list
          */
         public function index(){
             $titles = array();
-            $titles['prt'] = "用户";
+            $titles['prt'] = "user";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "用户列表";
+            $titles['son'] = "user list";
             $this->assign("titles", $titles);
 
             $obj = M('admin');
@@ -26,28 +26,28 @@
         }
 
         /*
-         *  2015年3月8日22:18:22
-         *  后台管理中心-新增用户
+         *  21 Apr 2021 22:18:22
+         *  back-end manage centre - assing user
          */
         public function add(){
             $titles = array();
-            $titles['prt'] = "用户";
+            $titles['prt'] = "user";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "新增用户";
+            $titles['son'] = "assing user";
             $this->assign("titles", $titles);
 
             $this->display();
         }
 
         /*
-         *  2015年3月8日22:18:43
-         *  后台管理中心-回收站
+         *  21 Apr 2021 22:18:43
+         *  back-end manage centre - trash
          */
         public function recycle(){
             $titles = array();
-            $titles['prt'] = "用户";
+            $titles['prt'] = "user";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "回收站";
+            $titles['son'] = "trash";
             $this->assign("titles", $titles);
 
             $obj = M('admin');
@@ -60,8 +60,8 @@
 
 
         /*
-         *  2015年3月10日10:35:49
-         *  新增用户，写入数据库
+         *  21 Apr 2021 10:35:49
+         *  assing user，write into library
          */
         public function addusr(){
 
@@ -83,20 +83,20 @@
                 $obj = M('admin');
                 $flag = $obj->add($data);
                 if($flag){
-                    $this->success("新用户添加成功");
+                    $this->success("new user adding success");
                 }else{
-                    $this->error("用户添加失败，请检查");
+                    $this->error("user adding failure, please check your actions");
                 }
             }
         }
 
         /*
-         *  2015年3月10日10:35:49
-         *  重置用户密码
+         *  21 Apr 2021 10:35:49
+         *  reset user passwrod
          */
         public function reset($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('admin');
                 $where['adminId'] = $id;
@@ -105,82 +105,82 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('用户密码重置成功');
+                    $this->success('user password reset success');
                 }else{
-                    $this->error('用户密码重置失败，请检查');
+                    $this->error('user password reset failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日13:34:25
-         *  将用户移动至回收站
+         *  21 Apr 2021 13:34:25
+         *  move user account to trash
          */
         public function toRecycle($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('admin');
                 $where['adminId'] = $id;
 
-                //目前，用户级别仅有系统管理员一级
+                //for now，user class only has admin level
                 $data['state'] = -1;
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('删除成功，已将该用户移动至回收站');
+                    $this->success('delete success，moved user account to trash');
                 }else{
-                    $this->error('删除失败，请检查');
+                    $this->error('delete failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:13:23
-         *  将用户状态恢复
+         *  21 Apr 2021 14:13:23
+         *  user status restoration
          */
         public function recoverOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('admin');
                 $where['adminId'] = $id;
 
-                //目前，用户级别仅有系统管理员一级
+                //for now，user class only has admin level
                 $data['state'] = 1;
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('恢复成功，已将该用户恢复至正常');
+                    $this->success('restore success，user status restored success');
                 }else{
-                    $this->error('恢复失败，请检查');
+                    $this->error('restore failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:14:12
-         *  将用户物理删除
+         *  21 Apr 2021 14:14:12
+         *  clear user account
          */
         public function clearOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('change failure, please check your actions');
             }else{
                 $obj = M('admin');
                 $where['adminId'] = $id;
 
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success('清除成功成功');
+                    $this->success('clear success');
                 }else{
-                    $this->error('清除失败，请检查');
+                    $this->error('clear failure, please check your actions');
                 }
             }
         }
 
         /*
-         *  2015年3月10日14:35:33
-         *  查看用户详情
+         *  21 Apr 2021 14:35:33
+         *  view user details
          */
         public function checkDetail(){
             if(IS_POST){

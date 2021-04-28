@@ -2,51 +2,51 @@
     <div class="admin">
         <div class="panel admin-panel">
             <div class="panel-head">
-                <input type="button" class="button button-small border-green" value="新增教师" onclick="javascript:window.location.href='{:U('Teacher/add')}';" />
-                <input type="button" class="button button-small border-blue" value="回收站" onclick="javascript:window.location.href='{:U('Teacher/recycle')}'" />
+                <input type="button" class="button button-small border-green" value="New teachers" onclick="javascript:window.location.href='{:U('Teacher/add')}';" />
+                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='{:U('Teacher/recycle')}'" />
             </div>
             <div class="padding border-bottom">
                 <form action="{:U('Teacher/index')}" class="form-inline">
                     <div class="form-group">
-                        <div class="label"><label for="thrCard">工号</label></div>
+                        <div class="label"><label for="thrCard">Teacher number</label></div>
                         <div class="field">
-                            <input type="text" class="input" id="thrCard" name="thrCard" size="12" value="<?php echo isset($seachData['thrCard']) && !empty($seachData['thrCard']) ? $seachData['thrCard'] : '';?>" placeholder="教师工号" />
+                            <input type="text" class="input" id="thrCard" name="thrCard" size="12" value="<?php echo isset($seachData['thrCard']) && !empty($seachData['thrCard']) ? $seachData['thrCard'] : '';?>" placeholder="Teacher's number" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="thrName">姓名</label></div>
+                        <div class="label"><label for="thrName">(full) name</label></div>
                         <div class="field">
-                            <input type="text" class="input" id="thrName" name="thrName" size="12" value="<?php echo isset($seachData['thrName']) && !empty($seachData['thrName']) ? $seachData['thrName'] : '';?>" placeholder="教师姓名" />
+                            <input type="text" class="input" id="thrName" name="thrName" size="12" value="<?php echo isset($seachData['thrName']) && !empty($seachData['thrName']) ? $seachData['thrName'] : '';?>" placeholder="Teacher's name" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="thrSex">教师性别</label></div>
+                        <div class="label"><label for="thrSex">Teacher gender</label></div>
                         <div class="field">
                             <select class="input" name="thrSex" id="thrSex">
-                                <option value="">请选择</option> 
-                                <option <?php echo $seachData['thrSex'] == 1 ? 'selected="selected"' : '' ;?> value="1">男</option>
-                                <option <?php echo $seachData['thrSex'] == 2 ? 'selected="selected"' : '' ;?> value="2">女</option>
+                                <option value="">Please choose</option> 
+                                <option <?php echo $seachData['thrSex'] == 1 ? 'selected="selected"' : '' ;?> value="1">male</option>
+                                <option <?php echo $seachData['thrSex'] == 2 ? 'selected="selected"' : '' ;?> value="2">female</option>
                             </select>
                         </div>
                     </div>
                     &nbsp;
                     &nbsp;
                     <div class="form-button">
-                        <button class="button bg-green" type="submit">检索</button>
+                        <button class="button bg-green" type="submit">retrieve</button>
                     </div>
                 </form>
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="80">教师编号</th>
-                    <th width="120">登陆账号</th>
-                    <th width="140">真实姓名</th>
-                    <th width="140">教师性别</th>
-                    <th width="140">联系方式</th>
-                    <th width="*">研究方向</th>
-                    <th width="180">操作</th>
+                    <th width="80">Teacher number</th>
+                    <th width="120">Login account</th>
+                    <th width="140">Real name</th>
+                    <th width="140">Teacher gender</th>
+                    <th width="140">contact way</th>
+                    <th width="*">research field</th>
+                    <th width="180">operate</th>
                 </tr>
                 <volist name="usrList" id="index">
                 <tr>
@@ -54,15 +54,15 @@
                     <td>{$index.thrName}</td>
                     <td>{$index.thrRealName}</td>
                     <td>
-                        <?php echo $index['thrSex'] == 1 ? '男' : '女'; ?>
+                        <?php echo $index['thrSex'] == 1 ? 'male' : 'female'; ?>
                     </td>
                     <td>{$index.thrPhone}</td>
                     <td>{$index.thrStudy}</td>
                     <td>
                         <input type="hidden" name="id" value="{$index.thrId}"/>
-                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">查看</a>
-                        <a class="button border-blue button-little" name="reset" href="#">重置密码</a>
-                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">删除</a>
+                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">examine</a>
+                        <a class="button border-blue button-little" name="reset" href="#">Reset password</a>
+                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">delete</a>
                     </td>
                 </tr>
                 </volist>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <br />
-        <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">郑少卓</a>构建   </p>
+        <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
     </div>
     
     <div id="checkdialog"> 
@@ -83,14 +83,14 @@
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>登陆账号：  <a class="thrName" href="#"></a></p>
-                    <p>真实姓名：  <a class="thrRealName" href="#"></a></p>
-                    <p>教师性别：  <a class="thrSex" href="#"></a></p>
-                    <p>教师年龄：  <a class="thrAge" href="#"></a></p>
-                    <p>研究方向：  <a class="thrStudy" href="#"></a></p>
-                    <p>联系方式：  <a class="thrPhone" href="#"></a></p>
-                    <p>邮箱地址：  <a class="thrEmail" href="#"></a></p>
-                    <p>办公地址：  <a class="thrAddress" href="#"></a></p>
+                    <p>Login account：  <a class="thrName" href="#"></a></p>
+                    <p>Real name：  <a class="thrRealName" href="#"></a></p>
+                    <p>Teacher gender：  <a class="thrSex" href="#"></a></p>
+                    <p>Teacher's age：  <a class="thrAge" href="#"></a></p>
+                    <p>research field：  <a class="thrStudy" href="#"></a></p>
+                    <p>contact way：  <a class="thrPhone" href="#"></a></p>
+                    <p>e-mail address：  <a class="thrEmail" href="#"></a></p>
+                    <p>business address：  <a class="thrAddress" href="#"></a></p>
                 </div>
             </div> 
         </div> 
@@ -100,15 +100,15 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>教师操作</strong> 
+                <strong>Teacher's operation</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>是否确认要删除该教师？</p>
-                    <p>O(∩_∩)O~~(为可恢复删除)</p>
+                    <p>Are you sure you want to delete this teacher?</p>
+                    <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
                 </div>
-                <input type="button" class="button bg-main" value="删了吧" onclick="javascript:recycle();" />
-                <button class="button bg-yellow" type="reset">反悔了</button>
+                <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
+                <button class="button bg-yellow" type="reset">regtet</button>
             </div> 
         </div> 
     </div>
@@ -134,7 +134,7 @@
                         if(data.state == true){
                             for(var x in data.detail){
                                 if(x == 'thrSex'){
-                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? '男' : '女');
+                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'male' : 'female');
                                 }else{
                                     $(".dialog ." + x + "").html(data.detail[x]);
                                 }

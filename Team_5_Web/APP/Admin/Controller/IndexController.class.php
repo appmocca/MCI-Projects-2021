@@ -7,8 +7,8 @@ class IndexController extends Controller {
     }
 
     /*
-     *  2015年3月8日22:10:47
-     *  用户登录处理
+     *  21 Apr 2021 22:10:47
+     *  User login actions
      */
     public function doLogin(){
     	$where['adminName'] = I("post.usrname");
@@ -23,7 +23,7 @@ class IndexController extends Controller {
 
     		$this->redirect("Admin/index");
     	}else{
-    		$this->error("账号或密码错误");
+    		$this->error("wrong combination");
     	}
     }
 }

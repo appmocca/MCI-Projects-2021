@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en-AU">
 <head>
     <title>{$title}</title>
-    <meta name="keywords" content="关键词" />
-    <meta name="description" content="描述" />
+    <meta name="keywords" content="keywords" />
+    <meta name="description" content="description" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="__CSS__/pintuer.css">
@@ -27,21 +27,21 @@
                 </div>
                 <div class="navbar-body">
                     <ul class="nav nav-inline nav-menu nav-tabs nav-big">
-                        <li><a href="{:U('Teacher/index')}" class="lls <?php echo $state == 'index' ? 'active' : '';?>">登录信息</a></li>
-                        <li><a href="{:U('Teacher/person')}" class="lls <?php echo $state == 'person' ? 'active' : '';?>">个人管理</a></li>
-                        <li><a href="{:U('Teacher/add')}" class="lls <?php echo $state == 'add' ? 'active' : '';?>">新增毕设</a></li>
-                        <li><a href="{:U('Teacher/bslist')}" class="lls <?php echo $state == 'bslist' ? 'active' : '';?>">毕设列表</a></li>
-                        <li><a href="{:U('Teacher/msg')}" class="lls <?php echo $state == 'msg' ? 'active' : '';?>">消息管理</a></li>
-                        <li><a href="{:U('Teacher/plan')}" class="lls <?php echo $state == 'plan' ? 'active' : '';?>">进度管理</a></li>
+                        <li><a href="{:U('Teacher/index')}" class="lls <?php echo $state == 'index' ? 'active' : '';?>">Login Information</a></li>
+                        <li><a href="{:U('Teacher/person')}" class="lls <?php echo $state == 'person' ? 'active' : '';?>">Persional Information</a></li>
+                        <li><a href="{:U('Teacher/add')}" class="lls <?php echo $state == 'add' ? 'active' : '';?>">Adding Proposal</a></li>
+                        <li><a href="{:U('Teacher/bslist')}" class="lls <?php echo $state == 'bslist' ? 'active' : '';?>">Proposal List</a></li>
+                        <li><a href="{:U('Teacher/msg')}" class="lls <?php echo $state == 'msg' ? 'active' : '';?>">Message Management</a></li>
+                        <li><a href="{:U('Teacher/plan')}" class="lls <?php echo $state == 'plan' ? 'active' : '';?>">Progress Management</a></li>
                     </ul>
                 </div>
             </div>
             <p class="nav-p">
-                欢迎您，{$usrName}
+                Welcome，{$usrName}
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a href="{:U('Teacher/loginout')}">注销</a>
+                <a href="{:U('Teacher/loginout')}">Logout</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a href="{:U('Teacher/index')}">首页</a>
+                <a href="{:U('Teacher/index')}">Index</a>
             </p>
         </div>
     </header>
@@ -50,7 +50,7 @@
         <div class="container">
             <div class="bread-me">
                 <ul class="bread bg-green bg-inverse">
-                    <li><a href="{:U('Teacher/index')}" class="icon-home"> 首页</a></li>
+                    <li><a href="{:U('Teacher/index')}" class="icon-home"> Index</a></li>
                     <li>{$title}</li>
                 </ul>
             </div>

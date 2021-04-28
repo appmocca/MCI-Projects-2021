@@ -6,7 +6,7 @@
             $flag = session("flag") ? true : false;
 
             if(!$flag){
-                $this->error("请先行登陆", U("Index/index"));
+                $this->error("Please login first", U("Index/index"));
             }else{
                 layout("Public/tplLayout");
 
