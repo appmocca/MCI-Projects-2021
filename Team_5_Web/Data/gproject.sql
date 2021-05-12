@@ -15,9 +15,6 @@ Date: 20xx-xx-xx 14:56:36
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for `admin`
--- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `adminId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Admin id',
@@ -35,12 +32,7 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`adminId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of admin
--- ----------------------------
--- ----------------------------
--- Table structure for `gproject`
--- ----------------------------
+
 DROP TABLE IF EXISTS `gproject`;
 CREATE TABLE `gproject` (
   `gpId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Proposal ID',
@@ -59,12 +51,7 @@ CREATE TABLE `gproject` (
   PRIMARY KEY (`gpId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of gproject
--- ----------------------------
--- ----------------------------
--- Table structure for `major`
--- ----------------------------
+
 DROP TABLE IF EXISTS `major`;
 CREATE TABLE `major` (
   `majorId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Major ID',
@@ -72,9 +59,7 @@ CREATE TABLE `major` (
   PRIMARY KEY (`majorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of major
--- ----------------------------
+
 INSERT INTO `major` VALUES ('1', 'CS');
 INSERT INTO `major` VALUES ('2', 'IoT');
 INSERT INTO `major` VALUES ('3', 'Communication');
@@ -82,9 +67,7 @@ INSERT INTO `major` VALUES ('4', 'Electronic Science and Technology');
 INSERT INTO `major` VALUES ('5', 'Electronic Information Engineering');
 INSERT INTO `major` VALUES ('6', 'Electronic Information Science and Technology');
 
--- ----------------------------
--- Table structure for `message`
--- ----------------------------
+
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `msgId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Message ID',
@@ -99,12 +82,7 @@ CREATE TABLE `message` (
   PRIMARY KEY (`msgId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of message
--- ----------------------------
--- ----------------------------
--- Table structure for `plan`
--- ----------------------------
+
 DROP TABLE IF EXISTS `plan`;
 CREATE TABLE `plan` (
   `planId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Plan List ID',
@@ -137,12 +115,7 @@ CREATE TABLE `plan` (
   PRIMARY KEY (`planId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of plan
--- ----------------------------
-------------
--- Table structure for `stlinks`
--- ----------------------------
+
 DROP TABLE IF EXISTS `stlinks`;
 CREATE TABLE `stlinks` (
   `stlId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Proposal Selection Relationship Table',
@@ -155,13 +128,7 @@ CREATE TABLE `stlinks` (
   PRIMARY KEY (`stlId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of stlinks
--- ----------------------------
 
--- ----------------------------
--- Table structure for `student`
--- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `stuId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Student ID',
@@ -179,13 +146,7 @@ CREATE TABLE `student` (
   PRIMARY KEY (`stuId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of student
--- ----------------------------
 
--- ----------------------------
--- Table structure for `teacher`
--- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `thrId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User ID',
@@ -205,6 +166,4 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`thrId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of teacher
--- ----------------------------
+studentstudent
