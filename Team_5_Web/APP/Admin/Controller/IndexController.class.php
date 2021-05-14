@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
+//$conn = mysqli_connect('localhost','root','123456','gproject') or die('fail to connect');
 class IndexController extends Controller {
     public function index(){
     	$this->display("login");
@@ -11,8 +12,8 @@ class IndexController extends Controller {
      *  User login actions
      */
     public function doLogin(){
-    	$where['adminName'] = I("post.usrname");
-    	$where['adminPwd'] = md5(I("post.usrpwd"));
+    	$where['adminName'] == I("post.usrname");
+    	$where['adminPwd'] == md5(I("post.usrpwd"));
 
         $obj = M("admin");
         $info = $obj->field("adminRealName, state")->where($where)->find();
@@ -23,7 +24,7 @@ class IndexController extends Controller {
 
     		$this->redirect("Admin/index");
     	}else{
-    		$this->error("wrong combination");
+    		$this->error("Wrong password or username");
     	}
     }
 }

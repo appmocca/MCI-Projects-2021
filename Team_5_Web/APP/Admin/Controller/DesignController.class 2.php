@@ -12,9 +12,9 @@
          */
         public function index($gpThrId = null, $gpContent = null, $state = null, $gpSHState = null){
             $titles = array();
-            $titles['prt'] = "毕设";
+            $titles['prt'] = "projects";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "登录信息";
+            $titles['son'] = "login information";
             $this->assign("titles", $titles);
 
             $where = array();
@@ -63,9 +63,9 @@
          */
         public function recycle(){
             $titles = array();
-            $titles['prt'] = "毕设";
+            $titles['prt'] = "projects";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "登录信息";
+            $titles['son'] = "login information";
             $this->assign("titles", $titles);
 
             $obj = M("gproject");
@@ -106,12 +106,12 @@
                 $obj = M("gproject");
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success("课题删除成功");
+                    $this->success("project delete successful");
                 }else{
-                    $this->error("课题删除失败");
+                    $this->error("project delete fail");
                 }
             }else{
-                $this->error("操作失败，请检查");
+                $this->error("check you operation and do it again");
             }
         }
 
@@ -121,7 +121,7 @@
          */
         public function recoverOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('check you operation and do it again');
             }else{
                 $obj = M('gproject');
                 $where['gpId'] = $id;
@@ -130,9 +130,9 @@
 
                 $flag = $obj->where($where)->save($data);
                 if($flag){
-                    $this->success('恢复成功，已将该课题恢复至正常');
+                    $this->success('recover successful');
                 }else{
-                    $this->error('恢复失败，请检查');
+                    $this->error('recover fail');
                 }
             }
         }
@@ -143,16 +143,16 @@
          */
         public function clearOne($id = 0){
             if($id == 0){
-                $this->error('操作错误，请检查您的操作');
+                $this->error('check you operation and do it again');
             }else{
                 $obj = M('gp ');
                 $where['gpId'] = $id;
 
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success('清除成功成功');
+                    $this->success('delete successful');
                 }else{
-                    $this->error('清除失败，请检查');
+                    $this->error('delete fail');
                 }
             }
         }
@@ -163,16 +163,16 @@
         */
         public function SH($id = 0, $flag = 0){
             if($id == 0 || $flag == 0){
-                $this->error('参数错误，请检查');
+                $this->error('data wrong');
             }else{
                 $where['gpId'] = $id;
                 $data['state'] = $flag;
 
                 $obj = M('gproject');
                 if($obj->where($where)->save($data)){
-                    $this->success('审核成功');
+                    $this->success('examination passed');
                 }else{
-                    $this->error('审核失败');
+                    $this->error('examination fail');
                 }
             }
         }
