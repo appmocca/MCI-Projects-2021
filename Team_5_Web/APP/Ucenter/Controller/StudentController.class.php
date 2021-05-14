@@ -33,7 +33,7 @@
 
             $this->assign('usrSex', session('SEX'));
             
-        	$this->assign("title", "登录信息");
+        	$this->assign("title", "login information");
             $this->display();
         }
 
@@ -42,7 +42,7 @@
     	 *	学生管理中心个人信息
     	 */
         public function person(){
-        	$this->assign("title", "个人管理");
+        	$this->assign("title", "personal management");
 
             $obj = M("student");
             $usrInfo = $obj->where(array("stuId" => session("ID")))->find();
@@ -61,11 +61,11 @@
     	 */
         public function bslist(){
             if(!$this->chkUsrInfo()){
-                $this->error("请先去完善个人信息，再进行其他操作", U('Student/person'));
+                $this->error("please finish your information first", U('Student/person'));
                 return false;
             }
 
-        	$this->assign("title", "毕设列表");
+        	$this->assign("title", "projects");
 
             $obj = M("stlinks");
             $where['stlStuId'] = session("ID");
@@ -81,12 +81,12 @@
     	 */
         public function detail(){
             if(!$this->chkUsrInfo()){
-                $this->error("请先去完善个人信息，再进行其他操作", U('Student/person'));
+                $this->error("please finish your information first", U('Student/person'));
                 return false;
             }
 
 
-        	$this->assign("title", "毕设详情");
+        	$this->assign("title", "projects detail");
 
             $obj = M('stlinks');
             $where['stlStuId'] = session("ID");
@@ -94,7 +94,7 @@
             
             $GpDetail = $obj->join("left join gproject on stlinks.stlSpId = gproject.gpId")->join("left join teacher on gproject.gpThrId = teacher.thrId")->field("gproject.*, thrRealName, thrPhone, thrEmail, thrAddress, thrStudy")->where($where)->find();
             if(!isset($GpDetail)){
-                $this->error("当前未有课题被选定。。。", U('Student/bslist'));
+                $this->error("this project is unselected", U('Student/bslist'));
             }
             $this->assign("meDetail", $GpDetail);
 
@@ -107,11 +107,11 @@
     	 */
         public function msg(){
             if(!$this->chkUsrInfo()){
-                $this->error("请先去完善个人信息，再进行其他操作", U('Student/person'));
+                $this->error("please finish your information first", U('Student/person'));
                 return false;
             }
 
-        	$this->assign("title", "消息管理");
+        	$this->assign("title", "massage management");
 
             $obj = M('stlinks');
             $data = array();
@@ -145,19 +145,19 @@
     	 */
         public function plan(){
             if(!$this->chkUsrInfo()){
-                $this->error("请先去完善个人信息，再进行其他操作", U('Student/person'));
+                $this->error("please finish your information first", U('Student/person'));
                 return false;
             }
 
 
-        	$this->assign("title", "毕设进度");
+        	$this->assign("title", "projects progression");
 
             $obj = M('stlinks');
             $where['stlStuId'] = session("ID");
             $where['stlinks.state'] = 2;
             $count = $obj->join("left join gproject on stlinks.stlSpId = gproject.gpId")->join("left join teacher on gproject.gpThrId = teacher.thrId")->where($where)->Count();
             if($count == 0){
-                $this->error("当前未有课题被选定。。。", U('Student/bslist'));
+                $this->error("you didn't select", U('Student/bslist'));
             }
 
             unset($where);
@@ -173,13 +173,13 @@
     	 */
         public function choose($GPName = null, $GPKey = null, $GPThrName = null, $GPState = null, $GPSH = null){
             if(!$this->chkUsrInfo()){
-                $this->error("请先去完善个人信息，再进行其他操作", U('Student/person'));
+                $this->error("please finish your information first", U('Student/person'));
                 return false;
             }
 
 
             layout(false);
-            $this->assign("title", "毕设选题");
+            $this->assign("title", "project proposal");
 
             $where = array();
             $seachData['GPName'] = $GPName;
@@ -256,9 +256,9 @@
 
                 $obj = M("student");
                 if($obj->where($where)->save($data)){
-                    $this->success("用户信息修改成功, 请重新登陆", U('Student/loginout'));
+                    $this->success("changed successful", U('Student/loginout'));
                 }else{
-                    $this->error("用户信息修改失败，请检查");
+                    $this->error("changed fail");
                 }
             }
         }
@@ -276,16 +276,16 @@
                 $GpDetail =$obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->field($field)->where($where)->find();
 
                 if($GpDetail['showState'][0] == 0){
-                    $GpDetail['thrPhone'] = "不公布";
+                    $GpDetail['thrPhone'] = "Not announced";
                 }
                 if($GpDetail['showState'][1] == 0){
-                    $GpDetail['thrEmail'] = "不公布";
+                    $GpDetail['thrEmail'] = "Not announced";
                 }
                 if($GpDetail['showState'][2] == 0){
-                    $GpDetail['thrAddress'] = "不公布";
+                    $GpDetail['thrAddress'] = "Not announced";
                 }
                 if($GpDetail['showState'][3] == 0){
-                    $GpDetail['thrStudy'] = "不公布";
+                    $GpDetail['thrStudy'] = "Not announced";
                 }
 
                 if(is_array($GpDetail) && !empty($GpDetail)){
@@ -304,7 +304,7 @@
             if($id >= 0 && $thrid >= 0){
                 $obj = M("stlinks");
                 if($obj->where(array('stlStuId' => session('ID')))->Count() > 6){
-                    $this->error('亲，课题列表包裹上限为 6， 请先去减轻负重');
+                    $this->error('The upper limit of the list of topics is 6, please lighten the load first');
                     return false;
                 }
 
@@ -318,13 +318,13 @@
                 $data['updateTime'] = $time;
 
                 if($obj->add($data) && M("gproject")->where(array('gpId' => $id))->save(array("state" => 2))){
-                    $this->success("该课题选择成功，等待确认...");
+                    $this->success("The subject selection is successful, waiting for confirmation...");
                 }else{  
-                    $this->error("该课题选择失败，请检查");
+                    $this->error("The topic selection failed, please check");
                 }
 
             }else{  
-                $this->error("操作参数错误，请检查");
+                $this->error("Operation parameter error, please check");
             }
         }
 
@@ -343,7 +343,7 @@
          */
         public function tuixuan($id = 0){
             if($id == 0 || intval($id) <= 0){
-                $this->error('参数错误，请检查');
+                $this->error('Parameter error, please check');
             }
 
             $obj = M("stlinks");
@@ -361,10 +361,10 @@
 
             if($flag){
                 $obj->commit();
-                $this->success("课题退选成功");
+                $this->success("The subject is successfully withdrawn");
             }else{
                 $obj->rollback();
-                $this->success("课题退选失败，请检查");
+                $this->success("Subject failed to be rejected, please check");
             }
         }
 
@@ -374,7 +374,7 @@
          */
         public function shanchu($id = 0){
             if($id == 0 || intval($id) <= 0){
-                $this->error('参数错误，请检查');
+                $this->error('Parameter error, please check');
             }
 
             $obj = M("stlinks");
@@ -382,9 +382,9 @@
             $where['stlStuId'] = session("ID");
 
             if($obj->where($where)->delete()){
-                $this->success("课题删除成功");
+                $this->success("Question deleted successfully");
             }else{
-                $this->success("课题删除失败，请检查");
+                $this->success("Question deletion failed, please check");
             }
         }
 
@@ -405,9 +405,9 @@
 
                 $obj = M('message');
                 if($obj->add($data)){
-                    $this->success("消息发送成功");
+                    $this->success("Message sent successfully");
                 }else{
-                    $this->error("消息发送失败");
+                    $this->error("Failed to send message");
                 }
             }
         }
@@ -418,15 +418,15 @@
          */
         public function delMsg($id = 0){
             if($id == 0 || intval($id) <= 0){
-                $this->error("参数错误，请检查");
+                $this->error("Parameter error, please check");
                 return false;
             }
 
             $obj = M('message');
             if($obj->where(array('msgId' => $id))->save(array('showStu' => -1))){
-                $this->success("消息删除成功");
+                $this->success("Message deleted successfully");
             }else{
-                $this->error("消息删除失败");
+                $this->error("Message deletion failed");
             }
 
         }
@@ -443,7 +443,7 @@
                 
                 $dd = $obj->field("stlStuId, stlThrId, stlSpId")->where($where)->find();
                 if(!isset($dd)){
-                    $this->error("当前未有课题被选定。。。", U('Student/bslist'));
+                    $this->error("No topic has been selected currently. . .", U('Student/bslist'));
                 }
 
                 $data = array();
@@ -477,9 +477,9 @@
 
                 $obj = M('plan');
                 if($obj->add($data)){
-                    $this->success("进度节点添加成功", U('Student/plan'));
+                    $this->success("Progress node added successfully", U('Student/plan'));
                 }else{
-                    $this->error("进度节点添加失败，请检查");
+                    $this->error("Failed to add progress node, please check");
                 }
             }
         }

@@ -33,7 +33,7 @@
 
             $this->assign('usrSex', session('SEX'));
             
-        	$this->assign("title", "登录信息");
+        	$this->assign("title", "login information");
             $this->display();
         }
 
@@ -42,7 +42,7 @@
     	 *	教师管理中心个人信息
     	 */
         public function person(){
-        	$this->assign("title", "个人管理");
+        	$this->assign("title", "Personal management");
 
             $obj = M('teacher');
             $usrDetail = $obj->where(array('thrId' => session('ID')))->find();
@@ -56,12 +56,12 @@
     	 *	教师管理中心毕设列表
     	 */
         public function bslist(){
-            if(!$this->chkUsrInfo()){
+            /* if(!$this->chkUsrInfo()){
                 $this->error("请先去完善个人信息，再进行其他操作", U('Teacher/person'));
                 return false;
             }
-
-        	$this->assign("title", "毕设列表");
+ */
+        	$this->assign("title", "list of proposals");
 
             $obj = M("gproject");
             $bsList = $obj->field("gpId, gpTitle, gpContent, gpMust, state")->where(array('gpThrId' => session("ID")))->select();
@@ -80,12 +80,12 @@
     	 *	教师管理中心新增毕设
     	 */
         public function add(){
-            if(!$this->chkUsrInfo()){
+           /*  if(!$this->chkUsrInfo()){
                 $this->error("请先去完善个人信息，再进行其他操作", U('Teacher/person'));
                 return false;
-            }
+            } */
 
-        	$this->assign("title", "新增毕设");
+        	$this->assign("title", "add proposal");
             $this->display();
         }
 
@@ -94,12 +94,12 @@
     	 *	教师管理中心消息管理
     	 */
         public function msg(){
-            if(!$this->chkUsrInfo()){
+            /* if(!$this->chkUsrInfo()){
                 $this->error("请先去完善个人信息，再进行其他操作", U('Teacher/person'));
                 return false;
-            }
+            } */
 
-        	$this->assign("title", "消息管理");
+        	$this->assign("title", "message");
 
             $obj = M('stlinks');
             $data = array();
@@ -131,12 +131,12 @@
     	 *	教师管理中心毕设进度
     	 */
         public function plan(){
-            if(!$this->chkUsrInfo()){
+            /* if(!$this->chkUsrInfo()){
                 $this->error("请先去完善个人信息，再进行其他操作", U('Teacher/person'));
                 return false;
             }
-
-        	$this->assign("title", "毕设进度");
+ */
+        	$this->assign("title", "progress of proposal");
 
             $obj = M("plan");
             $where['plnThrId'] = session("ID");
@@ -177,9 +177,9 @@
                 // var_dump($data);var_dump($where);exit;
                 $obj = M("teacher");
                 if($obj->where($where)->save($data)){
-                    $this->success("用户信息修改成功，请重新登陆", U("Teacher/loginout"));
+                    $this->success("User information is successfully modified, please log in again", U("Teacher/loginout"));
                 }else{
-                    $this->error("用户信息修改失败，请检查");
+                    $this->error("User information modification failed, please check");
                 }
             }
         }
@@ -208,9 +208,9 @@
 
                 $obj = M("gproject");
                 if($obj->add($data)){
-                    $this->success("课题添加成功", U('Teacher/bsList'));
+                    $this->success("Topic added successfully", U('Teacher/bsList'));
                 }else{
-                    $this->error("课题添加失败，请检查");
+                    $this->error("Failed to add topic, please check");
                 }
             }
         }
@@ -227,14 +227,14 @@
                 $GpDetail = $obj->where($where)->find();
                 if(is_array($GpDetail) && !empty($GpDetail)){
                     $this->assign("gpDetail", $GpDetail);
-                    $this->assign("title", "修改课题");
+                    $this->assign("title", "modify proposal");
 
                     $this->display("edit");
                 }else{
-                    $this->error("操作错误，请检查");
+                    $this->error("Operation error, please check");
                 }
             }else{
-                $this->error("操作错误，请检查");
+                $this->error("Operation error, please check");
             }
         }
 
@@ -280,9 +280,9 @@
 
                 $obj = M("gproject");
                 if($obj->where($where)->save($data)){
-                    $this->success("课题修改成功", U('Teacher/bslist'));
+                    $this->success("The subject was successfully modified", U('Teacher/bslist'));
                 }else{
-                    $this->error("课题修改失败，请检查");
+                    $this->error("Subject modification failed, please check");
                 }
             }
         }
@@ -298,12 +298,12 @@
                 $obj = M("gproject");
                 $flag = $obj->where($where)->delete();
                 if($flag){
-                    $this->success("课题删除成功");
+                    $this->success("proposal deleted successfully");
                 }else{
-                    $this->error("课题删除失败");
+                    $this->error("proposal deletion failed");
                 }
             }else{
-                $this->error("操作失败，请检查");
+                $this->error("Operation failed, please check");
             }
         }
 
@@ -358,14 +358,14 @@
                 if($flag){
                     $obj->commit();
                     $this->updateGPState();
-                    $this->success("课题确认成功");
+                    $this->success("proposal confirmed successfully");
                 }else{
                     $obj->rollback();
-                    $this->success("课题确认失败，请检查");
+                    $this->success("proposal confirmation failed, please check");
                 }
 
             }else{  
-                $this->error("操作错误，请检查");
+                $this->error("Operation error, please check");
             }
         }
 
@@ -457,9 +457,9 @@
                 }
 
                 if($flag){
-                    $this->success("消息发送成功");
+                    $this->success("message sent");
                 }else{
-                    $this->error("消息发送失败");
+                    $this->error("message sending failed");
                 }
             }
         }
@@ -470,15 +470,15 @@
          */
         public function delMsg($id = 0){
             if($id == 0 || intval($id) <= 0){
-                $this->error("参数错误，请检查");
+                $this->error("Parameter error, please check");
                 return false;
             }
 
             $obj = M('message');
             if($obj->where(array('msgId' => $id))->save(array('showThr' => -1))){
-                $this->success("消息删除成功");
+                $this->success("message deleted successful");
             }else{
-                $this->error("消息删除失败");
+                $this->error("message deleted failed");
             }
 
         }

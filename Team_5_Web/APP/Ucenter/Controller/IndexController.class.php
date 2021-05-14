@@ -15,8 +15,8 @@ class IndexController extends Controller {
     	if($flag == "s"){
     	//Student login
             $obj = M('student');
-            $where['stuCard'] = $usrname;
-            $where['stuPwd'] = md5($usrpwd);
+            $where['stuCard'] == $usrname;
+            $where['stuPwd'] == md5($usrpwd);
 
             $usrInfo = $obj->field('stuId, stuRealName, stuSex')->where($where)->find();
 
@@ -34,8 +34,8 @@ class IndexController extends Controller {
     	}else if($flag == "t"){
     	//Teacher Login
             $obj = M('teacher');
-            $where['thrName'] = $usrname;
-            $where['thrPwd'] = md5($usrpwd);
+            $where['thrName'] == $usrname;
+            $where['thrPwd'] == md5($usrpwd);
 
             $usrInfo = $obj->field('thrId, thrRealName, thrSex')->where($where)->find();
 
