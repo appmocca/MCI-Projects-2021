@@ -149,50 +149,83 @@
     <section>
 
     <div class="admin">
-        <form method="post">
         <div class="panel admin-panel">
-            <div class="panel-head"><strong>Content list</strong></div>
-            <div class="padding border-bottom">
-                <input type="button" class="button button-small border-green" value="Add users" onclick="javascript:window.location.href='<?php echo U('Usr/add');?>';" />
-                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='<?php echo U('Usr/recycle');?>'" />
+            <div class="panel-head">
+                <input type="button" class="button button-small border-green" value="Add new students" onclick="javascript:window.location.href='<?php echo U('Student/add');?>';" />
+                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='<?php echo U('Student/recycle');?>'" />
             </div>
-
+            <div class="padding border-bottom">
+                <form action="<?php echo U('Student/index');?>" class="form-inline">
+                    <div class="form-group">
+                        <div class="label"><label for="stuCard">student number</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="stuCard" name="stuCard" size="12" value="<?php echo isset($seachData['stuCard']) && !empty($seachData['stuCard']) ? $seachData['stuCard'] : '';?>" placeholder="Student student number" />
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                        <div class="label"><label for="stuName">(full) name</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="stuName" name="stuName" size="12" value="<?php echo isset($seachData['stuName']) && !empty($seachData['stuName']) ? $seachData['stuName'] : '';?>" placeholder="Student name" />
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                        <div class="label"><label for="stuSex">Student gender</label></div>
+                        <div class="field">
+                            <select class="input" name="stuSex" id="stuSex">
+                                <option value="">Please choose</option> 
+                                <option <?php echo $seachData['stuSex'] == 1 ? 'selected="selected"' : '' ;?> value="1">male</option>
+                                <option <?php echo $seachData['stuSex'] == 2 ? 'selected="selected"' : '' ;?> value="2">female</option>
+                            </select>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                        <div class="label"><label for="stuMajor">Student specialty</label></div>
+                        <div class="field">
+                            <select class="input" name="stuMajor" id="stuMajor">
+                                <option value="">Please choose</option> 
+                                <?php if(is_array($majorList)): $i = 0; $__LIST__ = $majorList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$index): $mod = ($i % 2 );++$i;?><option <?php echo $seachData['stuMajor'] == $index['majorId'] ? 'selected="selected"' : '' ;?> value="<?php echo ($index["majorId"]); ?>"><?php echo ($index["majorName"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+                    <div class="form-button">
+                        <button class="button bg-green" type="submit">retrieve</button>
+                    </div>
+                </form>
+            </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="80">User number</th>
-                    <th width="110">name of user</th>
-                    <th width="110">Real name</th>
-                    <th width="110">User gender</th>
+                    <th width="140">student number</th>
+                    <th width="140">(full) name</th>
+                    <th width="110">gender</th>
                     <th width="120">contact way</th>
-                    <th width="*">e-mail address</th>
-                    <th width="140">user group</th>
+                    <th width="*">Professional name</th>
                     <th width="180">operate</th>
                 </tr>
                 <?php if(is_array($usrList)): $i = 0; $__LIST__ = $usrList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$index): $mod = ($i % 2 );++$i;?><tr>
-                    <td><?php echo ($index["adminId"]); ?></td>
-                    <td><?php echo ($index["adminName"]); ?></td>
-                    <td><?php echo ($index["adminRealName"]); ?></td>
+                    <td><?php echo ($index["stuCard"]); ?></td>
+                    <td><?php echo ($index["stuRealName"]); ?></td>
                     <td>
-                        <?php echo $index['adminSex'] == 1 ? 'male' : 'female'; ?>
+                        <?php echo $index['stuSex'] == 1 ? '男' : '女'; ?>
                     </td>
-                    <td><?php echo ($index["adminPhone"]); ?></td>
-                    <td><?php echo ($index["adminEmail"]); ?></td>
+                    <td><?php echo ($index["stuPhone"]); ?></td>
+                    <td><?php echo ($index["majorName"]); ?></td>
                     <td>
-                        <?php switch($index['state']){ case 1: echo "system administrator"; break; case 2: echo "Teacher administrator"; break; case 3: echo "Student administrator"; break; break; } ?> 
-                    </td>
-                    <td>
-                        <input type="hidden" name="id" value="<?php echo ($index["adminId"]); ?>"/>
+                        <input type="hidden" name="id" value="<?php echo ($index["stuId"]); ?>"/>
                         <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">examine</a>
                         <a class="button border-blue button-little" name="reset" href="#">Reset password</a>
                         <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">delete</a>
                     </td>
                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-            </table>
+                </table>
             <div class="panel-foot text-center">
-                page
+                <div class ="green-black"><?php echo ($page); ?></div>
             </div>
         </div>
-        </form>
         <br />
         <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
     </div>
@@ -201,18 +234,17 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>User details</strong> 
+                <strong>Student details</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>User number：  <a class="adminId" href="#"></a></p>
-                    <p>user account：  <a class="adminName" href="#"></a></p>
-                    <p>Real name：  <a class="adminRealName" href="#"></a></p>
-                    <p>User gender：  <a class="adminSex" href="#"></a></p>
-                    <p>User age：  <a class="adminAge" href="#"></a></p>
-                    <p>contact way：  <a class="adminPhone" href="#"></a></p>
-                    <p>e-mail address：  <a class="adminEmail" href="#"></a></p>
-                    <p>home address：  <a class="adminAddress" href="#"></a></p>
+                    <p>Student student number：  <a class="stuCard" href="#"></a></p>
+                    <p>Real name：  <a class="stuRealName" href="#"></a></p>
+                    <p>Student specialty：  <a class="majorName" href="#"></a></p>
+                    <p>Student gender：  <a class="stuSex" href="#"></a></p>
+                    <p>Age of students：  <a class="stuAge" href="#"></a></p>
+                    <p>contact way：  <a class="stuPhone" href="#"></a></p>
+                    <p>e-mail address：  <a class="stuEmail" href="#"></a></p>
                 </div>
             </div> 
         </div> 
@@ -222,31 +254,31 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>User operation</strong> 
+                <strong>Student operation</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>Are you sure you want to delete this user?</p>
+                    <p>Are you sure you want to delete this student?</p>
                     <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
                 </div>
-        
                 <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
-                <button class="button bg-yellow" type="reset">regret</button>
+                <button class="button bg-yellow" type="reset">regtet</button>
             </div> 
         </div> 
     </div>
+        
 
     <script>
         var ID = null;
         function recycle(){
-            window.location.href = "<?php echo U('Usr/toRecycle/id/" + ID +"');?>";
+            window.location.href = "<?php echo U('Student/toRecycle/id/" + ID +"');?>";
         }
         $(function(){
             $(".table a[name='check']").click(function(){
                 ID = $(this).parent().find("input[name='id']").val();
                
                 $.ajax({
-                    url: "<?php echo U('Usr/checkDetail');?>",
+                    url: "<?php echo U('Student/checkDetail');?>",
                     data: {
                         id: ID,
                     },
@@ -255,7 +287,7 @@
                     success: function(data){
                         if(data.state == true){
                             for(var x in data.detail){
-                                if(x == 'adminSex'){
+                                if(x == 'stuSex'){
                                     $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'male' : 'female');
                                 }else{
                                     $(".dialog ." + x + "").html(data.detail[x]);
@@ -270,7 +302,7 @@
 
             $(".table a[name='reset']").click(function(){
                 var id = $(this).parent().find("input[name='id']").val();
-                window.location.href = "<?php echo U('Usr/reset/id/" + id +"');?>";
+                window.location.href = "<?php echo U('Student/reset/id/" + id +"');?>";
             });
 
             $(".table a[name='delete']").click(function(){

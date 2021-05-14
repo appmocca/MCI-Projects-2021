@@ -8,16 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Public/Styles/css/pintuer.css">
     <script src="/Public/Styles/js/jquery.js"></script>
-    <script src="/Public/Styles/js/pintuer.js"></script>
+    <script src="/Public/Styles/js/pintuer.js"></script> 
     <script src="/Public/Styles/js/respond.js"></script>
 
     <style>
-        body{background-image: url("/Public/Images/ubg.jpg");}
-        .loginBox{width: 380px; position: absolute; left: 60%; top: 40%; border: 1px dotted #bcbcbc; padding:16px 0px 16px 32px; background-color: #ffffff; border-radius: 5px;}
+         body{background-image: url("/Public/Images/bg.jpg");
+         background-size: 100%;
+         background-repeat: no-repeat;
+        }
+        #header {
+        color:white;
+        text-align:center;
+        padding:30px;
+        }
+        .loginBox{width: 380px; position: absolute; left: 60%; top: 25%; border: 1px dotted #ebedf3; padding:16px 0px 16px 32px; background-color: rgba(148, 185, 185, 0.5); border-radius: 5px;}
         .loginBox > h2{text-align: center;}
     </style>
 </head>
 <body>
+    <div id="header">
+        <h1>Tapping into community-lead</h1>
+      </div>
     <div class="container">
         <div class="loginBox">
             <h2>Proposal Section System Login</h2>
