@@ -1,6 +1,6 @@
 <?php
 return array(
-	'DB_TYPE'   => 'mysql', // Database type
+	'DB_TYPE'   => 'mysqli', // Database type
 	'DB_HOST'   => 'localhost', // Server address
 	'DB_NAME'   => 'gproject', // Database name
 	'DB_USER'   => 'root', // username
