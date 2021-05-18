@@ -1,0 +1,147 @@
+
+    <div class="admin">
+        <form method="post">
+        <div class="panel admin-panel">
+            <div class="panel-head"><strong>Content list</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small border-green" value="Add users" onclick="javascript:window.location.href='{:U('Usr/add')}';" />
+                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='{:U('Usr/recycle')}'" />
+            </div>
+
+            <table class="table table-hover">
+                <tr>
+                    <th width="80">User number</th>
+                    <th width="110">name of user</th>
+                    <th width="110">Real name</th>
+                    <th width="110">User gender</th>
+                    <th width="120">contact way</th>
+                    <th width="*">e-mail address</th>
+                    <th width="140">user group</th>
+                    <th width="180">operate</th>
+                </tr>
+                <volist name="usrList" id="index">
+                <tr>
+                    <td>{$index.adminId}</td>
+                    <td>{$index.adminName}</td>
+                    <td>{$index.adminRealName}</td>
+                    <td>
+                        <?php echo $index['adminSex'] == 1 ? 'male' : 'female'; ?>
+                    </td>
+                    <td>{$index.adminPhone}</td>
+                    <td>{$index.adminEmail}</td>
+                    <td>
+                        <?php switch($index['state']){
+                            case 1:
+                                echo "system administrator";
+                                break;
+                            case 2:
+                                echo "Teacher administrator";
+                                break;
+                            case 3:
+                                echo "Student administrator";
+                                break;
+                            break;
+                            }
+                            ?> 
+                    </td>
+                    <td>
+                        <input type="hidden" name="id" value="{$index.adminId}"/>
+                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">examine</a>
+                        <a class="button border-blue button-little" name="reset" href="#">Reset password</a>
+                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">delete</a>
+                    </td>
+                </tr>
+                </volist>
+            </table>
+            <div class="panel-foot text-center">
+                page
+            </div>
+        </div>
+        </form>
+        <br />
+        <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
+    </div>
+
+    <div id="checkdialog"> 
+        <div class="dialog"> 
+            <div class="dialog-head"> 
+                <span class="close rotate-hover"></span> 
+                <strong>User details</strong> 
+            </div> 
+            <div class="dialog-body">
+                <div class="form-group">
+                    <p>User number：  <a class="adminId" href="#"></a></p>
+                    <p>user account：  <a class="adminName" href="#"></a></p>
+                    <p>Real name：  <a class="adminRealName" href="#"></a></p>
+                    <p>User gender：  <a class="adminSex" href="#"></a></p>
+                    <p>User age：  <a class="adminAge" href="#"></a></p>
+                    <p>contact way：  <a class="adminPhone" href="#"></a></p>
+                    <p>e-mail address：  <a class="adminEmail" href="#"></a></p>
+                    <p>home address：  <a class="adminAddress" href="#"></a></p>
+                </div>
+            </div> 
+        </div> 
+    </div>
+
+    <div id="mydialog"> 
+        <div class="dialog"> 
+            <div class="dialog-head"> 
+                <span class="close rotate-hover"></span> 
+                <strong>User operation</strong> 
+            </div> 
+            <div class="dialog-body">
+                <div class="form-group">
+                    <p>Are you sure you want to delete this user?</p>
+                    <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
+                </div>
+        
+                <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
+                <button class="button bg-yellow" type="reset">regret</button>
+            </div> 
+        </div> 
+    </div>
+
+    <script>
+        var ID = null;
+        function recycle(){
+            window.location.href = "{:U('Usr/toRecycle/id/" + ID +"')}";
+        }
+        $(function(){
+            $(".table a[name='check']").click(function(){
+                ID = $(this).parent().find("input[name='id']").val();
+               
+                $.ajax({
+                    url: "{:U('Usr/checkDetail')}",
+                    data: {
+                        id: ID,
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.state == true){
+                            for(var x in data.detail){
+                                if(x == 'adminSex'){
+                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'male' : 'female');
+                                }else{
+                                    $(".dialog ." + x + "").html(data.detail[x]);
+                                }
+                            }
+                        }else{
+                            return ;
+                        }
+                    }
+                }); 
+            });
+
+            $(".table a[name='reset']").click(function(){
+                var id = $(this).parent().find("input[name='id']").val();
+                window.location.href = "{:U('Usr/reset/id/" + id +"')}";
+            });
+
+            $(".table a[name='delete']").click(function(){
+                var id = $(this).parent().find("input[name='id']").val();
+                ID = id;
+            });
+
+        });
+    </script>
