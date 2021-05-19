@@ -111,8 +111,22 @@
                                     <div class="field">
                                         <select class="input" name="GPSH" id="GPSH">
                                             <option value="">Select</option> 
-                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="1">Software direction</option>
-                                            <option <?php echo $seachData['GPSH'] == 2 ? 'selected="selected"' : '' ;?> value="2">Hardware direction</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="1">COMP SCI 1104</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="2">COMP SCI 2008</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="3">COMP SCI 3020</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="4">COMP SCI 3006</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="5">COMP SCI 3310</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="6">COMP SCI 3311</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="7">COMP SCI 3312</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="8">COMP SCI 3313</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="9">COMP SCI 4015 A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="10">COMP SCI 4414A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="11">COMP SCI 7015</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="12">COMP SCI 7096A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="13">COMP SCI 7098</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="14">COMP SCI 7099 A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="14">COMP SCI 7097 A/B</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -143,7 +157,7 @@
                                 <td><?php echo ($index["gpTitle"]); ?></td>
                                 <td><?php echo ($index["gpContent"]); ?></td>
                                 <td>
-                                    <?php if($index["gpSHState"] == 1): ?>Software direction
+                                    <?php if($index["gpSHState"] == 1): ?>Hardware direction
                                     <?php else: ?>
                                         Hardware direction<?php endif; ?>
                                 </td>

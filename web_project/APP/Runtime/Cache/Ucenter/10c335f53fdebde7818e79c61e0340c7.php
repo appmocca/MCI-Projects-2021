@@ -57,7 +57,7 @@
                 <div class="panel-body text-center">
                     <img src="/Public/Images/sex_<?php echo session("SEX") == 1 ? 'a' : 'n';?>.jpg" width="120" class="radius-circle" /><br /><?php echo ($usrName); ?>
                 </div>
-                <div class="panel-foot bg-back border-back">&nbsp;<br/>Welcome，<?php echo ($usrName); ?> <br>&nbsp;</div>
+                <div class="panel-foot bg-back border-back">&nbsp;<br/>Welcome,<?php echo ($usrName); ?>!<br>&nbsp;</div>
             </div>
             <br />
             <div class="panel">
@@ -70,7 +70,7 @@
             <br />
         </div>
         <div class="xm9">
-            <div class="alert alert-yellow"><span class="close"></span><strong>Attention:</strong>You have<?php echo ($msgCount); ?>Messages，<a href="<?php echo U('Student/msg');?>">Click to view</a>。</div>
+            <div class="alert alert-yellow"><span class="close"></span><strong>Attention: </strong>You have <?php echo ($msgCount); ?> Messages <a href="<?php echo U('Student/msg');?>">Click to view</a>。</div>
             <div class="alert">
                 <h4>Student Proposal Management System</h4>
                 <p class="text-gray padding-top">Project management system, dynamic website technology<br/>Collect student information, subject information and other related data to facilitate students to manage data in real time</p>

@@ -12,8 +12,8 @@
     <script src="/Public/Styles/js/respond.js"></script>
 
     <style>
-         body{background-image: url("/Public/Images/bg.jpg");
-         background-size: 100%;
+         body:nth-child(2){background-image: url("/Public/Images/bg.jpg");
+         background-size: 100vw 100vh;
          background-repeat: no-repeat;
         }
         #header {
@@ -21,8 +21,13 @@
         text-align:center;
         padding:30px;
         }
-        .loginBox{width: 380px; position: absolute; left: 60%; top: 25%; border: 1px dotted #ebedf3; padding:16px 0px 16px 32px; background-color: rgba(148, 185, 185, 0.5); border-radius: 5px;}
-        .loginBox > h2{text-align: center;}
+        .loginBox{width: 350px; margin: 16% auto; border: 1px dotted #ebedf3; padding:16px 10px 16px 10px; background-color: rgba(148, 185, 185, 0.5); border-radius: 5px;}
+        .loginBox > h2{text-align: center; color: white;}
+        body label{color: white;}
+        body .button:hover, body .button:active, .button.active{
+            background-color: lightgrey;
+        }
+
     </style>
 </head>
 <body>
@@ -35,21 +40,21 @@
             <br>
             <form action="<?php echo U('Index/doLogin');?>"  class="form-x" method="post">
                 <div class="form-group">
-                    <label class="label">Account:</label>
-                    <div class="field field-icon">
+                    <label class="label" style="width:30%;">Account:</label>
+                    <div class="field field-icon" style="width:65%;">
                         <span class="icon icon-user"></span>
-                        <input type="text" class="input input-auto" id="usrname" name="usrname" size="30" placeholder="loginAcc" data-validate="required:Please input login account" /> 
+                        <input style="width:215px;" type="text" class="input input-auto" id="usrname" name="usrname" size="30" placeholder="loginAcc" data-validate="required:Please input login account" /> 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="label">Password:</label>
-                    <div class="field field-icon">
+                    <label class="label" style="width:30%;">Password:</label>
+                    <div class="field field-icon" style="width:65%;">
                         <span class="icon icon-key"></span>
-                        <input type="password" class="input input-auto" id="usrpwd" name="usrpwd" size="30" placeholder="loginPwd" data-validate="required:please input login password,length#>4:at least 4 characters" /> 
+                        <input style="width:215px;" type="password" class="input input-auto" id="usrpwd" name="usrpwd" size="30" placeholder="loginPwd" data-validate="required:please input login password,length#>4:at least 4 characters" /> 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="label">Type:</label>
+                    <label class="label" style="width: 30%;">Type:</label>
                     <div class="button-group radio">
                         <label class="button active">
                             <input name="flag" value="s" checked="checked" type="radio">
@@ -62,9 +67,9 @@
                     </div>
                 </div>
                 <div class="form-button">
-                    <button type="submit" class="button bg-green">Login</button>
+                    <button type="submit" class="button bg-green" style="margin-left: 48px;">Login</button>
                     &nbsp;&nbsp;
-                    <button type="reset" class="button bg-mix">Reset</button>
+                    <button type="reset" class="button bg-mix" style="margin-left: 48px;">Reset</button>
                 </div>
             </form>
         </div>

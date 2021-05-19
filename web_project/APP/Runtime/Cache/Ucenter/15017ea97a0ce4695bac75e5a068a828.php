@@ -60,55 +60,56 @@
                 </div>
  
 <div class="adminme">
-    <form method="post" class="form-x" action="<?php echo U('Teacher/addDesign');?>">
+    <form method="post" class="form-x" action="<?php echo U('Teacher/updateGp');?>">
          <div class="form-group">
             <div class="label"><label for="title">Proposal topic</label></div>
             <div class="field">
-                <input type="text" class="input" name="title" size="50" placeholder="Proposal topic" data-validate="required:Please fill in the completed questions" value="" />
+                <input type="text" class="input" name="title" size="50" placeholder="Proposal topic" data-validate="required:Please fill in the completed questions" value="<?php echo ($gpDetail['gpTitle']); ?>" />
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="aim">Proposal purpose</label></div>
             <div class="field">
-                <textarea class="input" name="aim" rows="3" cols="30" placeholder="Proposal purpose" data-validate="required:Please fill in the completed questions" ></textarea>
+                <textarea class="input" name="aim" rows="3" cols="30" placeholder="Proposal purpose" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpAim']); ?></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="content">Proposal content</label></div>
             <div class="field">
-                <textarea class="input" name="content" rows="3" cols="30" placeholder="Proposal content" data-validate="required:Please fill in the completed questions" ></textarea>
+                <textarea class="input" name="content" rows="3" cols="30" placeholder="Proposal content" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpContent']); ?></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="request">Proposal outcomes</label></div>
             <div class="field">
-                <textarea class="input" name="request" rows="3" cols="30" placeholder="Proposal outcomes" data-validate="required:Please fill in the completed questions" ></textarea>
+                <textarea class="input" name="request" rows="3" cols="30" placeholder="Proposal outcomes" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpRequest']); ?></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="must">Essential knowledge</label></div>
             <div class="field">
-                <textarea class="input" name="must" rows="3" cols="30" placeholder="Essential knowledge" data-validate="required:Please fill in the completed questions" ></textarea>
+                <textarea class="input" name="must" rows="3" cols="30" placeholder="Essential knowledge" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpMust']); ?></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="formal">Submission form(optional)</label></div>
             <div class="field">
-                <input type="text" class="input" name="formal" size="50" placeholder="Submission form(optional)" />
+                <input type="text" class="input" name="formal" size="50" placeholder="Submission form(optional)" value="<?php echo ($gpDetail['gpFormal']); ?>"  />
             </div>
         </div>
         <div class="form-group">
-            <div class="label"><label for="other">others</label></div>
+            <div class="label"><label for="others">other</label></div>
             <div class="field">
-                <textarea class="input" name="other" rows="3" cols="30" placeholder="other"></textarea>
+                <textarea class="input" name="others" rows="3" cols="30" placeholder="others"><?php echo ($gpDetail['gpOthers']); ?></textarea>
             </div>
         </div>
         <div class="form-group">
-            <div class="label"><label>Subject direction</label></div>
+            <div class="label" <?php echo ($gpDetail['gpSHState']); ?>><label>Subject direction</label></div>
             <div class="field">
                 <div class="button-group radio"> 
-                    <p><label class="label_input"></label><select style="width:283px; height:28px;">
-                        <option value ="COMP"> COMP SCI 1104 </option>
+                    <p><label class="label_input" name = "SHState" <?php echo ($gpDetail['gpSHState']); ?>></label><select style="width:283px; height:28px;">
+                    <?php echo ($gpDetail['gpSHState']); ?>
+                        <option value ="1"> COMP SCI 1104 </option>
                         <option value ="2"> COMP SCI 2008 </option>
                         <option value ="3"> COMP SCI 3020 </option>
                         <option value ="4"> COMP SCI 3006</option>
@@ -128,8 +129,9 @@
             </div>
         </div>
         <div class="form-button">
-            <button class="button bg-main" type="submit">submit</button>
-            <button class="button bg-yellow form-reset " type="reset">retreat</button>  
+            <input type="hidden" value="<?php echo ($gpDetail['gpId']); ?>" name="id" />
+            <button class="button bg-main" type="submit">modify</button>
+            <a class="button bg-yellow " href="javascript:history.go(-1);">retreat</a>  
         </div>                
     </form>   
     <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
