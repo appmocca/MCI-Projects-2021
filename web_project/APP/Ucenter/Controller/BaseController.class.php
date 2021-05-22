@@ -10,6 +10,7 @@
 			$this->error("Please login first", U('Index/index'));
 		}else{
 			$this->assign('usrName', session('NAME'));
+			
 		}
     }
 }
