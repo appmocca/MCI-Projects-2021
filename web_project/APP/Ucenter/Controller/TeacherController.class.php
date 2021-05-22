@@ -53,7 +53,7 @@
 
         /*
     	 *	2015年3月8日19:44:04
-    	 *	教师管理中心毕设列表
+    	 *	教师管理中心毕设列表1
     	 */
         public function bslist(){
             /* if(!$this->chkUsrInfo()){
