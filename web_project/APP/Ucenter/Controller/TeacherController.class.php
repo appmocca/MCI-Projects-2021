@@ -198,8 +198,10 @@
                 $data['gpMust'] = I("post.must");
                 $data['gpFormal'] = I("post.formal");
                 $data['gpOthers'] = I("post.other");
-                $gpSHState = I("post.SHState");
+                /*$gpSHState = I("post.SHState");
                 $data['gpSHState'] = $gpSHState == 2 ? $gpSHState : 1;
+                */
+                $data['gpSHState'] = I("post.SHState");
                 $data['state'] = 0;
 
                 $time = time();
@@ -351,9 +353,10 @@
                 if(!M("gproject")->where(array("gpId" => $GpInfo['stlSpId']))->save(array("state" => 3))){
                     $flag = true;
                 }
-                if(!$obj->where(array('stlStuId' => $GpInfo['stlStuId'], 'state' => array("in", array(1, 3))))->delete()){
+                /*if(!$obj->where(array('stlStuId' => $GpInfo['stlStuId'], 'state' => array("in", array(1, 3))))->delete()){
                     $flag = false;
                 }
+                */
 
                 if($flag){
                     $obj->commit();

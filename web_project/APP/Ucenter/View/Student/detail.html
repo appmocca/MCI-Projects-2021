@@ -2,7 +2,7 @@
 <div class="adminme">
     <form method="post" class="form-x" action="#">
          <div class="form-group">
-            <div class="label"><label for="name">Proposal Hao</label></div>
+            <div class="label"><label for="name">Proposal ID</label></div>
             <div class="field">
                 <input type="text" class="input" size="50" placeholder="Proposal Hao"  value="{$meDetail.gpId}" disabled="disabled" />
             </div>
@@ -16,72 +16,71 @@
         <div class="form-group">
             <div class="label"><label for="pwd">Proposal purpose</label></div>
             <div class="field">
-                <textarea class="input" rows="3" cols="30" placeholder="Proposal purpose">{$meDetail.gpAim}</textarea>
+                <textarea class="input" rows="3" cols="30" placeholder="Proposal purpose" disabled="disabled">{$meDetail.gpAim} </textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">Proposal content</label></div>
             <div class="field">
-                <textarea class="input" rows="3" cols="30" placeholder="Proposal content">{$meDetail.gpContent}</textarea>
+                <textarea class="input" rows="3" cols="30" placeholder="Proposal content" disabled="disabled">{$meDetail.gpContent}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">Proposal outcomes</label></div>
             <div class="field">
-                <textarea class="input" rows="3" cols="30" placeholder="Proposal outcomes">{$meDetail.gpRequest}</textarea>
+                <textarea class="input" rows="3" cols="30" placeholder="Proposal outcomes"disabled="disabled">{$meDetail.gpRequest}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">Essential knowledge</label></div>
             <div class="field">
-                <textarea class="input" rows="3" cols="30" placeholder="Essential knowledge">{$meDetail.gpMust}</textarea>
+                <textarea class="input" rows="3" cols="30" placeholder="Essential knowledge"disabled="disabled">{$meDetail.gpMust}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">other</label></div>
             <div class="field">
-                <textarea class="input" rows="3" cols="30" placeholder="other">{$meDetail.gpOthers}</textarea>
+                <textarea class="input" rows="3" cols="30" placeholder="other"disabled="disabled">{$meDetail.gpOthers}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">Submission form(optional)</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="Submission form(optional)"  value="{$meDetail.gpFormal}" />
+                <textarea type="text" class="input" size="50" placeholder="Submission form(optional)" disabled="disabled" >{$meDetail.gpFormal}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="phone">adviser</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="adviser"  value="{$meDetail.thrRealName}" />
+                <input type="text" class="input" size="50" placeholder="adviser"  disabled="disabled" value="{$meDetail.thrRealName}" />
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="email">contact way</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="contact way" value="{$meDetail.thrPhone}" />
+                <input type="text" class="input" size="50" placeholder="contact way"  disabled="disabled" value="{$meDetail.thrPhone}" />
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">e-mail address</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="e-mail address"  value="{$meDetail.thrEmail}" />
+                <input type="text" class="input" size="50" placeholder="e-mail address"  disabled="disabled" value="{$meDetail.thrEmail}" />
             </div>
         </div>
         <div class="form-group">
-            <div class="label"><label for="address">office space</label></div>
+            <div class="label"><label for="address">office address</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="office space" value="{$meDetail.thrAddress}" />
+                <input type="text" class="input" size="50" placeholder="office space"  disabled="disabled" value="{$meDetail.thrAddress}" />
             </div>
         </div>
         <div class="form-group">
             <div class="label"><label for="age">research field</label></div>
             <div class="field">
-                <input type="text" class="input" size="50" placeholder="research field"  value="{$meDetail.thrStudy}" />
+                <input type="text" class="input" size="50" placeholder="research field"  disabled="disabled"value="{$meDetail.thrStudy}" />
             </div>
         </div>
 
-        <div class="form-button"> <button class="button bg-yellow form-reset " type="reset">step back/button>  
-        </div>                
+                      
     </form>   
     <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build  </p>
 </div>

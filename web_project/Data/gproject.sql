@@ -44,7 +44,7 @@ CREATE TABLE `gproject` (
   `gpMust` varchar(128) DEFAULT NULL COMMENT 'Required Knowledge',
   `gpFormal` varchar(128) DEFAULT NULL COMMENT 'Form of Submittion',
   `gpOthers` varchar(2048) DEFAULT NULL COMMENT 'Proposal Relevant Note',
-  `gpSHState` tinyint(4) DEFAULT '1' COMMENT '1Software Direction，2Hardware Direction',
+  `gpSHState` varchar (128) DEFAULT NULL COMMENT 'Proposal Direction',
   `createTime` varchar(12) DEFAULT NULL COMMENT 'Creation Time',
   `updateTime` varchar(12) DEFAULT NULL COMMENT 'updateTime',
   `state` tinyint(4) DEFAULT '1' COMMENT '0fail to pass 1passed but not assigned、2passed and assigned、3passed、-1fail to pass',
@@ -61,7 +61,7 @@ CREATE TABLE `major` (
 
 
 INSERT INTO `major` VALUES ('1', 'CS');
-INSERT INTO `major` VALUES ('2', 'IoT');
+INSERT INTO `major` VALUES ('2', 'IT');
 INSERT INTO `major` VALUES ('3', 'Communication');
 INSERT INTO `major` VALUES ('4', 'Electronic Science and Technology');
 INSERT INTO `major` VALUES ('5', 'Electronic Information Engineering');
