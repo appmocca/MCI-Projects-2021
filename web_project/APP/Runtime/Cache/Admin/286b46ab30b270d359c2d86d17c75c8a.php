@@ -156,21 +156,21 @@
             <div class="padding border-bottom">
                 <form action="<?php echo U('Design/index');?>" class="form-inline">
                     <div class="form-group">
-                        <div class="label"><label for="gpThrId">Supervised professor</label></div>
+                        <div class="label"><label for="gpThrId">Supervised professor &nbsp</label></div>
                         <div class="field">
-                            <input type="text" class="input" id="gpThrId" name="gpThrId" size="12" value="<?php echo isset($seachData['gpThrId']) && !empty($seachData['gpThrId']) ? $seachData['gpThrId'] : '';?>" placeholder="Supervised professor" />
+                            <input type="text" class="input" id="gpThrId" name="gpThrId" size="12" value="<?php echo isset($seachData['gpThrId']) && !empty($seachData['gpThrId']) ? $seachData['gpThrId'] : '';?>" placeholder="Professor" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="gpContent">Key Words</label></div>
+                        <div class="label"><label for="gpContent">Keywords &nbsp</label></div>
                         <div class="field">
-                            <input type="text" class="input" id="gpContent" name="gpContent" size="12" value="<?php echo isset($seachData['gpContent']) && !empty($seachData['gpContent']) ? $seachData['gpContent'] : '';?>" placeholder="Key Words" />
+                            <input type="text" class="input" id="gpContent" name="gpContent" size="12" value="<?php echo isset($seachData['gpContent']) && !empty($seachData['gpContent']) ? $seachData['gpContent'] : '';?>" placeholder="Keywords" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="state">Proposal Status</label></div>
+                        <div class="label"><label for="state">Proposal Status &nbsp</label></div>
                         <div class="field">
                             <select class="input" name="state" id="state">
                                 <option value="">Please choose</option>
@@ -182,12 +182,25 @@
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="gpSHState">Proposal Direct</label></div>
+                        <div class="label"><label for="gpSHState">Proposal Direct &nbsp</label></div>
                         <div class="field">
-                            <select class="input" name="gpSHState" id="gpSHState">
+                            <select class="input" name="gpSHState" id="gpSHState" style="width:200px; height:30px;">
                                 <option value="">Please choose</option>
-                                <option <?php echo $seachData['gpSHState'] == 1 ? 'selected="selected"' : '' ;?> value="1">Software Direacion</option>
-                                <option <?php echo $seachData['gpSHState'] == 2 ? 'selected="selected"' : '' ;?> value="2">Hardware Direction</option>
+                                <option <?php echo $seachData['GPSH'] == 1 ? 'selected="selected"' : '' ;?> value="COMP SCI 1104">COMP SCI 1104 Grand Challenges in Computer Science</option>
+                                            <option <?php echo $seachData['GPSH'] == 2 ? 'selected="selected"' : '' ;?> value="COMP SCI 2008">COMP SCI 2008 Topics in Computer Science</option>
+                                            <option <?php echo $seachData['GPSH'] == 3 ? 'selected="selected"' : '' ;?> value="COMP SCI 3020">COMP SCI 3020 Advanced Topics in Computer Science</option>
+                                            <option <?php echo $seachData['GPSH'] == 4 ? 'selected="selected"' : '' ;?> value="COMP SCI 3006 ">COMP SCI 3006 Software Engineering & Project</option>
+                                            <option <?php echo $seachData['GPSH'] == 5 ? 'selected="selected"' : '' ;?> value="COMP SCI 3310">COMP SCI 3310 Software Engineering & Project (Artificial Intelligence)</option>
+                                            <option <?php echo $seachData['GPSH'] == 6 ? 'selected="selected"' : '' ;?> value="COMP SCI 3311">COMP SCI 3311 Software Engineering & Project (Data Science)</option>
+                                            <option <?php echo $seachData['GPSH'] == 7 ? 'selected="selected"' : '' ;?> value="COMP SCI 3312">COMP SCI 3312 Software Engineering & Project (Cybersecurity)</option>
+                                            <option <?php echo $seachData['GPSH'] == 8 ? 'selected="selected"' : '' ;?> value="COMP SCI 3313">COMP SCI 3313 Software Engineering & Project (Distributed Systems & Networking)</option>
+                                            <option <?php echo $seachData['GPSH'] == 9 ? 'selected="selected"' : '' ;?> value="COMP SCI 4015">COMP SCI 4015 A/B Computer Science Honours Research Project Part A</option>
+                                            <option <?php echo $seachData['GPSH'] == 10 ? 'selected="selected"' : '' ;?> value="COMP SCI 4414A/B">COMP SCI 4414A/B Software Engineering Honours Research Project A</option>
+                                            <option <?php echo $seachData['GPSH'] == 11 ? 'selected="selected"' : '' ;?> value="COMP SCI 7015">COMP SCI 7015 Software Engineering & Project</option>
+                                            <option <?php echo $seachData['GPSH'] == 12 ? 'selected="selected"' : '' ;?> value="COMP SCI 7096A/B">COMP SCI 7096A/B Master of Software Engineering Project Part A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 13 ? 'selected="selected"' : '' ;?> value="COMP SCI 7098">COMP SCI 7098 Master of Computing & Innovation Project</option>
+                                            <option <?php echo $seachData['GPSH'] == 14 ? 'selected="selected"' : '' ;?> value="COMP SCI 7099 A/B">COMP SCI 7099 A/B Master Computer Science Research Project - Part A/B</option>
+                                            <option <?php echo $seachData['GPSH'] == 15 ? 'selected="selected"' : '' ;?> value="COMP SCI 7097 A/B">COMP SCI 7097 A/B Master Data Science Research Project Part A/B</option>
                             </select>
                         </div>
                     </div>
@@ -249,7 +262,9 @@
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
+                    <p>Supervised professor:  <a class="thrRealName" href="#"></a></p>
                     <p>Proposal ID:  <a class="gpId" href="#"></a></p>
+                    <p>Proposal title:  <a class="gpTitle" href="#"></a></p>
                     <p>Proposal Content:  <a class="gpContent" href="#"></a></p>
                     <p>Proposal Intention:  <a class="gpAim" href="#"></a></p>
                     <p>Proposal outcomes:  <a class="gpRequest" href="#"></a></p>
@@ -257,7 +272,7 @@
                     <p>Form of Submittion(optional):  <a class="gpFormal" href="#"></a></p>
                     <p>Proposal Direct:  <a class="gpSHState" href="#"></a></p>
                     <p>Others:  <a class="gpOthers" href="#"></a></p>
-                    <p>Supervised professor:  <a class="thrRealName" href="#"></a></p>
+                    
                 </div>
             </div> 
         </div> 
@@ -313,7 +328,6 @@
         $(function(){
             $(".table a[name='check']").click(function(){
                 ID = $(this).parent().find("input[name='id']").val();
-               
                 $.ajax({
                     url: "<?php echo U('Design/checkGP');?>",
                     data: {
@@ -324,11 +338,7 @@
                     success: function(data){
                         if(data.state == true){
                             for(var x in data.detail){
-                                if(x == 'gpSHState'){
-                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'Software Direacion' : 'Hardware Direction');
-                                }else{
-                                    $(".dialog ." + x + "").html(data.detail[x]);
-                                }
+                                $(".dialog ." + x + "").html(data.detail[x]);
                             }
                         }else{
                             return ;
