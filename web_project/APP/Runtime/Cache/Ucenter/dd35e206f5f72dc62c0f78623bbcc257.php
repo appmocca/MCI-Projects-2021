@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/Public/Styles/css/pintuer.css">
     <link rel="stylesheet" href="/Public/Styles/css/admin.css">
     <link rel="stylesheet" href="/Public/Styles/css/page.css">
-    <link rel="stylesheet" href="/Public/Styles/css/adminme.css">
+    <link rel="stylesheet" href="/Public/Styles/css/me.css">
     <script src="/Public/Styles/js/jquery.js"></script>
     <script src="/Public/Styles/js/pintuer.js"></script>
     <script src="/Public/Styles/js/respond.js"></script>
@@ -22,20 +22,7 @@
 <body>
     <header>
         <div class="layout layout_top bg22 fixed-top">
-            <div class="navbar navbar-big radius navbarme">
-                <div class="navbar-head">
-                </div>
-                <div class="navbar-body">
-                    <ul class="nav nav-inline nav-menu nav-tabs nav-big">
-                        <li><a href="<?php echo U('Teacher/index');?>" class="lls <?php echo $state == 'index' ? 'active' : '';?>">Login Information</a></li>
-                        <li><a href="<?php echo U('Teacher/person');?>" class="lls <?php echo $state == 'person' ? 'active' : '';?>">Persional Information</a></li>
-                        <li><a href="<?php echo U('Teacher/add');?>" class="lls <?php echo $state == 'add' ? 'active' : '';?>">Adding Proposal</a></li>
-                        <li><a href="<?php echo U('Teacher/bslist');?>" class="lls <?php echo $state == 'bslist' ? 'active' : '';?>">Proposal List</a></li>
-                        <li><a href="<?php echo U('Teacher/msg');?>" class="lls <?php echo $state == 'msg' ? 'active' : '';?>">Message Management</a></li>
-                        <li><a href="<?php echo U('Teacher/plan');?>" class="lls <?php echo $state == 'plan' ? 'active' : '';?>">Progress Management</a></li>
-                    </ul>
-                </div>
-            </div>
+
             <p class="nav-p">
                 Welcome，<?php echo ($usrName); ?>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -47,13 +34,30 @@
     </header>
 
     <section>
-        <div class="container">
-            <div class="bread-me">
-                <ul class="bread bg-green bg-inverse">
-                    <li><a href="<?php echo U('Teacher/index');?>" class="icon-home"> Index</a></li>
-                    <li><?php echo ($title); ?></li>
+
+        <div class="line">
+            
+            <div class="xm2 bg22 contBox">
+                <aside>
+                <ul class="nav">
+                    <li><a href="<?php echo U('Teacher/index');?>" class="lls <?php echo $state == 'index' ? 'active' : '';?>">Login Information</a></li>
+                    <li><a href="<?php echo U('Teacher/person');?>" class="lls <?php echo $state == 'person' ? 'active' : '';?>">Personal Information</a></li>
+                    <li><a href="<?php echo U('Teacher/add');?>" class="lls <?php echo $state == 'add' ? 'active' : '';?>">Adding Proposal</a></li>
+                    <li><a href="<?php echo U('Teacher/bslist');?>" class="lls <?php echo $state == 'bslist' ? 'active' : '';?>">Proposal List</a></li>
+                    <li><a href="<?php echo U('Teacher/msg');?>" class="lls <?php echo $state == 'msg' ? 'active' : '';?>">Message Management</a></li>
+                    <li><a href="<?php echo U('Teacher/plan');?>" class="lls <?php echo $state == 'plan' ? 'active' : '';?>">Progress Management</a></li>
                 </ul>
+                </aside>
             </div>
+       
+        
+            <div class="xm10 contBox">
+                <div class="bread-me">
+                    <ul class="bread bg">
+                      <li><a href="<?php echo U('Teacher/index');?>" class="icon-home"> Index</a></li>
+                      <li><?php echo ($title); ?></li>
+                    </ul>
+                </div>
 
 <div class="adminme">
         <form method="post" class="form-x" action="<?php echo U('Teacher/modifyInfo');?>">

@@ -69,10 +69,14 @@
                 <div class="form-button">
                     <button type="submit" class="button bg-green" style="margin-left: 48px;">Login</button>
                     &nbsp;&nbsp;
-                    <button type="reset" class="button bg-mix" style="margin-left: 48px;">Reset</button>
+                    <button type="register" class="button bg-green" style="margin-left: 48px;" onclick="window.location.href = 'file:///Users/xuanjili/Desktop/MCI/Team-05/web_project/APP/Admin/View/Usr/add.html'">Register</button>
+                    <button type="reset" class="button bg-mix" style="margin-left: 112px;">Reset</button>
                 </div>
+                
             </form>
+            
         </div>
     </div>
+    
 </body>
 </html>
