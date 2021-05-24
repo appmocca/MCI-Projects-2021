@@ -150,11 +150,7 @@
                     success: function(data){
                         if(data.state == true){
                             for(var x in data.detail){
-                                if(x == 'gpSHState'){
-                                    $(".dialog ." + x + "").html(data.detail[x] == 1 ? 'Software direction' : 'Hardware direction');
-                                }else{
-                                    $(".dialog ." + x + "").html(data.detail[x]);
-                                }
+                               $(".dialog ." + x + "").html(data.detail[x]);
                             }
                         }else{
                             return ;
