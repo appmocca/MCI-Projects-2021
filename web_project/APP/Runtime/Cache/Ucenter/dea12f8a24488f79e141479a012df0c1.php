@@ -66,7 +66,7 @@
                 <?php if(is_array($meGpList)): $i = 0; $__LIST__ = $meGpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$index): $mod = ($i % 2 );++$i;?><tr>
                     <td><?php echo ($index["gpId"]); ?></td>
                     <td>
-                        <?php echo $index['gpSHState'] == 1 ? 'Software direction' : 'Hardware direction'; ?>
+                        <?php echo ($index["gpSHState"]); ?>
                     </td>
                     <td><?php echo ($index["gpTitle"]); ?></td>
                     <td><?php echo ($index["gpContent"]); ?></td>

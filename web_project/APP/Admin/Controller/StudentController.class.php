@@ -96,8 +96,6 @@
                         $this->error('login account is student ID in digits, please check your input');
                         return ;
                     }
-
-
                     $data['stuCard'] = $account;
                     $pwd = I("post.pwd");
                     $data['stuPwd'] = isset($pwd) && $pwd != "" ? md5($pwd) : md5(666666);

@@ -64,7 +64,7 @@
         	$this->assign("title", "list of proposals");
 
             $obj = M("gproject");
-            $bsList = $obj->field("gpId, gpTitle, gpContent, gpMust, state")->where(array('gpThrId' => session("ID")))->select();
+            $bsList = $obj->field("gpId, gpTitle, gpContent, gpOthers,gpMust, state")->where(array('gpThrId' => session("ID")))->select();
             
             $obj = M("stlinks");
             foreach($bsList as &$v){
@@ -273,7 +273,7 @@
                 $data['gpRequest'] = I("post.request");
                 $data['gpMust'] = I("post.must");
                 $data['gpFormal'] = I("post.formal");
-                $data['gpOthers'] = I("post.other");
+                $data['gpOthers'] = I("post.others");
                 $data['gpSHState'] = I("post.SHState") == 2 ? 2 : 1;
                 $data['state'] = 1;
 

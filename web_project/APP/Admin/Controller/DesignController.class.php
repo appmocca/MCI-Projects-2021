@@ -51,6 +51,7 @@
             $Page   = new \Think\Page($count,10);// Instantiate the total number of incoming records and the number of records displayed per page of the paging class (10)
             $show   = $Page->show();//Paging display output//Paging data query Note that the parameters of the limit method should use the attributes of the Page class
             $bsList = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->field("gproject.*, teacher.thrRealName")->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
+           
             $this->assign('bsList', $bsList);//assign data set
             $this->assign('page',$show);//Assign paging output
 
@@ -71,7 +72,7 @@
             $obj = M("gproject");
             $bsList = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->field("gproject.*, teacher.thrRealName")->where(array("gproject.state" => -1))->select();
             $this->assign("bsList", $bsList);
-
+            var_dump($bsList);die;
             $this->display();
         }
 

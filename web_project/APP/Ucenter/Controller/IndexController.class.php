@@ -2,6 +2,9 @@
 namespace Ucenter\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+    function __construct(){
+        parent::__construct();
+    }
     public function index(){
         $this->display('login');
     }
@@ -11,15 +14,16 @@ class IndexController extends Controller {
     	$usrname = I("post.usrname");
     	$usrpwd = I("post.usrpwd");
         session(null);
-
+       
     	if($flag == "s"){
     	//Student login
+            $where = array();
             $obj = M('student');
-            $where['stuCard'] == $usrname;
-            $where['stuPwd'] == md5($usrpwd);
+            $where['stuCard'] = $usrname;
+            $where['stuPwd'] = $usrpwd;
 
             $usrInfo = $obj->field('stuId, stuRealName, stuSex')->where($where)->find();
-
+         
     		if(isset($usrInfo) && is_array($usrInfo)){
     			session("FLAG", "student");
                 session("NAME", $usrInfo['stuRealName']);
@@ -34,8 +38,8 @@ class IndexController extends Controller {
     	}else if($flag == "t"){
     	//Teacher Login
             $obj = M('teacher');
-            $where['thrName'] == $usrname;
-            $where['thrPwd'] == md5($usrpwd);
+            $where['thrName'] = $usrname;
+            $where['thrPwd'] = $usrpwd;
 
             $usrInfo = $obj->field('thrId, thrRealName, thrSex')->where($where)->find();
 
@@ -52,4 +56,5 @@ class IndexController extends Controller {
     	}
 
     }
+
 }
