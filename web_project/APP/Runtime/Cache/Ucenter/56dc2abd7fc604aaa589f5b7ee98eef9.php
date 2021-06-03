@@ -89,7 +89,7 @@
                         </td>
                         <td>
                             <input type="hidden" name="id" value="<?php echo ($index["gpId"]); ?>" />
-                            <?php if($index["state"] == -1): ?><a class="button border-black button-little">Not through</a>
+                            <?php if($index["state"] == -1): ?><a class="button border-black button-little dialogs" name="result" href="#" data-toggle="click" data-target="#resultdialog" data-mask="1" data-width="50%">Not through</a>
                                 <?php elseif($index["state"] == 0): ?>
                                 <a class="button border-black button-little">Pending review</a>
                                 <?php elseif($index["state"] == 1): ?>
@@ -141,6 +141,25 @@
                 <p>Subject direction：
                     <a class="gpSHState" href="#"></a>
                 </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="resultdialog">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span>
+            <strong>Project details</strong>
+        </div>
+        <div class="dialog-body">
+            <div class="form-group">
+                <p>Comment：
+                    <a class="gpOthers" href="#"></a>
+                </p>
+                <div>DownLoad File：
+                    <a class="button filePath" href="">DownLoad File</a>
+                </div>
             </div>
         </div>
     </div>
@@ -237,6 +256,38 @@
                     if (data.state == true) {
                         for (var x in data.detail) {
                             $(".dialog ." + x + "").html(data.detail[x]);
+                        }
+                    } else {
+                        return;
+                    }
+                }
+            });
+        });
+
+        $(".table a[name='result']").click(function() {
+            ID = $(this).parent().find("input[name='id']").val();
+
+            $.ajax({
+                url: "<?php echo U('Teacher/checkGP');?>",
+                data: {
+                    id: ID,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                    if (data.state == true) {
+                        for (var x in data.detail) {
+                            console.log(x)
+                            if(x == 'filePath'){
+
+                                var value = '/Public'+data.detail[x];
+                                console.log(value)
+                                $(".filePath").attr('href',value)
+                            }else{
+                                $(".dialog ." + x + "").html(data.detail[x]);
+                            }
+
                         }
                     } else {
                         return;

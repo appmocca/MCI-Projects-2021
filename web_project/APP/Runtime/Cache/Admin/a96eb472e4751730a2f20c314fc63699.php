@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title><?php echo ($titles['prt']); ?>-<?php echo ($titles['son']); ?></title>
+    <title>Admin</title>
     <meta name="keywords" content="keywords" />
     <meta name="description" content="description" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -150,81 +150,97 @@
     </header>
 
     <section>
-<div class="admin">
-    <div class="line-big">
-        <div class="xm3">
-            <div class="panel border-back">
-                <div class="panel-body text-center">
-                    <img src="/Public/Images/sex_a.jpg" width="120" class="radius-circle" /><br /> admin
+ 
+<div class="adminme">
+    <form role="form" method="post" class="form-x" action="<?php echo U('Design/updateGp');?>" enctype="multipart/form-data">
+         <div class="form-group">
+            <div class="label"><label for="title">Proposal topic</label></div>
+            <div class="field">
+                <input type="text" class="input" name="title" size="50" placeholder="Proposal topic" data-validate="required:Please fill in the completed questions" value="<?php echo ($gpDetail['gpTitle']); ?>" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="aim">Proposal purpose</label></div>
+            <div class="field">
+                <textarea class="input" name="aim" rows="3" cols="30" placeholder="Proposal purpose" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpAim']); ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="content">Proposal content</label></div>
+            <div class="field">
+                <textarea class="input" name="content" rows="3" cols="30" placeholder="Proposal content" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpContent']); ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="request">Proposal outcomes</label></div>
+            <div class="field">
+                <textarea class="input" name="request" rows="3" cols="30" placeholder="Proposal outcomes" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpRequest']); ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="must">Essential knowledge</label></div>
+            <div class="field">
+                <textarea class="input" name="must" rows="3" cols="30" placeholder="Essential knowledge" data-validate="required:Please fill in the completed questions" ><?php echo ($gpDetail['gpMust']); ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="formal">Submission form(optional)</label></div>
+            <div class="field">
+                <input type="text" class="input" name="formal" size="50" placeholder="Submission form(optional)" value="<?php echo ($gpDetail['gpFormal']); ?>"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="formal">Upload file</label></div>
+            <div class="field">
+                <input type="file" name="upfile" id="upfile">
+              
+                <?php if(!empty($gpDetail.filePath)): ?><!--<a class="button" href="/Public/.<?php echo ($gpDetail['filePath']); ?>">下载文件</a>-->
+                    <input  readonly name="file" class="input" value="<?php echo ($gpDetail['filePath']); ?>"><?php endif; ?>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="comment">comment</label></div>
+            <div class="field">
+                <textarea class="input" name="others" rows="3" cols="30" placeholder="others"><?php echo ($gpDetail['gpOthers']); ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label>Subject direction</label></div>
+            <div class="field">
+                <div class="button-group radio"> 
+                    <p><label class="label_input"></label>
+                        <select name="SHState" style="width:283px; height:28px;">
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 1104" ? 'selected="selected"' : '' ;?> value ="COMP SCI 1104" > COMP SCI 1104 Grand Challenges in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 2008" ? 'selected="selected"' : '' ;?> value ="COMP SCI 2008" > COMP SCI 2008 Topics in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3020" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3020" > COMP SCI 3020 Advanced Topics in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3006" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3006" > COMP SCI 3006 Software Engineering & Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3310" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3310" > COMP SCI 3310 Software Engineering & Project (Artificial Intelligence)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3311" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3311" > COMP SCI 3311 Software Engineering & Project (Data Science)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3312" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3312" > COMP SCI 3312 Software Engineering & Project (Cybersecurity)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3313" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3313" > COMP SCI 3313 Software Engineering & Project (Distributed Systems & Networking)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 4015A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 4015A/B" > COMP SCI 4015A/B Computer Science Honours Research Project Part A</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 4414A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 4414A/B" > COMP SCI 4414A/B Software Engineering Honours Research Project A</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7015" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7015" > COMP SCI 7015 Software Engineering & Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7096A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7096A/B" > COMP SCI 7096A/B Master of Software Engineering Project Part A/B</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7098" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7098" > COMP SCI 7098 Master of Computing & Innovation Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7099A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7099A/B"> COMP SCI 7099A/B Master Computer Science Research Project - Part A/B</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7097A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7097A/B"> COMP SCI 7097A/B Master Data Science Research Project Part A/B </option>
+                    </select>
+                    </p>
                 </div>
-                <div class="panel-foot bg-back border-back">&nbsp;<br/>Hi，
-                    <?php echo session("NAME"); ?><br/>&nbsp;</div>
-            </div>
-            <br />
-            <div class="panel">
-                <div class="panel-head"><strong>Site statistics</strong></div>
-                <ul class="list-group">
-                    <li><span class="float-right badge bg-red"><?php echo ($CLists["usr"]); ?></span><span class="icon-user"></span> User</li>
-                    <li><span class="float-right badge bg-main"><?php echo ($CLists["teacher"]); ?></span><span class="icon-file"></span> Teacher</li>
-                    <li><span class="float-right badge bg-main"><?php echo ($CLists["student"]); ?></span><span class="icon-shopping-cart"></span> Student</li>
-                    <li><span class="float-right badge bg-main"><?php echo ($CLists["message"]); ?></span><span class="icon-file-text"></span> Message</li>
-                    <li><span class="float-right badge bg-main"><?php echo ($CLists["gp"]); ?></span><span class="icon-database"></span> project of Team05</li>
-                </ul>
-            </div>
-            <br />
-        </div>
-        <div class="xm9">
-            <div class="alert alert-yellow"><span class="close"></span><strong>Attention：</strong>You have 0 unread messages，<a href="#">click to view</a>。</div>
-            <div class="alert">
-                <h4>proposal manage system introduction</h4>
-                <p class="text-gray padding-top">proposal manage system，dynamic website technology<br/>Gathering teacher infomation、student infomation、proposal infomation and relavant date，方便 admin manage data quickly </p>
-                <?php if(session("state") != 3): ?>
-                <a target="_blank" class="button bg-dot icon-user" href="<?php echo U('Teacher/index');?>"> Teacher manage </a>
-                <?php endif; ?>
-                <?php if(session("state") != 2): ?>
-                <a target="_blank" class="button bg-main icon-file-text" href="<?php echo U('Student/index');?>"> Student manage </a>
-                <?php endif; ?>
-                <?php if(session("state") == 1): ?>
-                <a target="_blank" class="button border-main icon-code" href="<?php echo U('Design/index');?>"> Proposal manage </a>
-                <?php endif; ?>
-            </div>
-            <div class="panel">
-                <div class="panel-head"><strong>system infomation</strong></div>
-                <table class="table">
-                    <tr>
-                        <th colspan="2"> Servers infomation</th>
-                        <th colspan="2">system infomation</th>
-                    </tr>
-                    <tr>
-                        <td width="120" align="right">Operating system：</td>
-                        <td><?php echo ($system['os']); ?></td>
-                        <td width="120" align="right">Web Servers：</td>
-                        <td><?php echo ($system['web_os']); ?></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Index：</td>
-                        <td><a href="#" target="_blank"><?php echo ($system['domainname']); ?></a></td>
-                        <td align="right">IP：</td>
-                        <td><?php echo ($system['ip']); ?></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Progamming Language：</td>
-                        <td><?php echo ($system['language']); ?></td>
-                        <td align="right">Language：</td>
-                        <td><a href="#" target="_blank"><?php echo ($system['php_version']); ?></a></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Data form：</td>
-                        <td><?php echo ($system['db_os']); ?></td>
-                        <td align="right">Library version：</td>
-                        <td><?php echo ($system['db_version']); ?></td>
-                    </tr>
-                </table>
             </div>
         </div>
-    </div>
-    <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build </p>
+        <div class="form-button">
+            <input type="hidden" value="<?php echo ($gpDetail['gpId']); ?>" name="id" />
+            <button class="button bg-main" type="submit">modify</button>
+            <a class="button bg-yellow " href="javascript:history.go(-1);">retreat</a>  
+        </div>                
+    </form>   
+    <p class="text-right text-gray">Based on<a class="text-gray" target="_blank" href="#">Team05</a>build   </p>
 </div>
+    
 </section>
 
     <footer>

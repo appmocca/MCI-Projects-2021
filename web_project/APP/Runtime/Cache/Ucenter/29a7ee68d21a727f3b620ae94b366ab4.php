@@ -60,7 +60,7 @@
                 </div>
  
 <div class="adminme">
-    <form method="post" class="form-x" action="<?php echo U('Teacher/addDesign');?>">
+    <form method="post" class="form-x" action="<?php echo U('Teacher/addDesign');?>" enctype="multipart/form-data">
          <div class="form-group">
             <div class="label"><label for="title">Proposal topic</label></div>
             <div class="field">
@@ -98,7 +98,13 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="label"><label for="other">others</label></div>
+            <div class="label"><label for="formal">Upload file</label></div>
+            <div class="field">
+                <input type="file" name="upfile" id="inputfile">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="other">comment</label></div>
             <div class="field">
                 <textarea class="input" name="other" rows="3" cols="30" placeholder="other"></textarea>
             </div>

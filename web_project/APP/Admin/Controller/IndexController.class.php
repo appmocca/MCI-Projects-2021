@@ -12,6 +12,7 @@ class IndexController extends Controller {
      *  User login actions
      */
     public function doLogin(){
+        $where = array();
     	$where['adminName'] == I("post.usrname");
     	$where['adminPwd'] == md5(I("post.usrpwd"));
 

@@ -189,6 +189,21 @@
          *  教师管理中心新增毕设
          */
         public function addDesign(){
+            $files = $_FILES['upfile'];
+
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   =     3145728 ;// 设置附件上传大小
+            $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// 设置附件上传类型
+            $upload->rootPath  =     'Public'; // 设置附件上传根目录
+            $upload->savePath  =     '/upload/'; // 设置附件上传（子）目录
+            // 上传文件
+            $info   =   $upload->uploadOne($files);
+
+            if(!$info) {// 上传错误提示错误信息
+                $this->error($upload->getError());
+            }else{// 上传成功
+                $infoPath = $info['savepath'].$info['savename'];
+            }
             if(IS_POST){
                 $data['gpThrId'] = session('ID');
                 $data['gpTitle'] = I("post.title");
@@ -203,6 +218,7 @@
                 */
                 $data['gpSHState'] = I("post.SHState");
                 $data['state'] = 0;
+                $data['filePath'] = $infoPath;
 
                 $time = time();
                 $data['updateTime'] = $time;
@@ -227,6 +243,7 @@
 
                 $obj = M("gproject");
                 $GpDetail = $obj->where($where)->find();
+
                 if(is_array($GpDetail) && !empty($GpDetail)){
                     $this->assign("gpDetail", $GpDetail);
                     $this->assign("title", "modify proposal");
@@ -250,7 +267,9 @@
 
                 $obj = M("gproject");
                 $GpDetail = $obj->where($where)->find();
+
                 if(is_array($GpDetail) && !empty($GpDetail)){
+//                    $GpDetail['filePath'] = $GpDetail['filePath'];
                     echo json_encode(array("state" => true, "detail" => $GpDetail));
                 }
             }else{
@@ -263,7 +282,27 @@
          *  教师管理中心修改毕设
          */
         public function updateGp(){
+            $files = $_FILES['upfile'];
+            if(!empty($files['tmp_name'])){
+                $upload = new \Think\Upload();// 实例化上传类
+                $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// 设置附件上传类型
+                $upload->rootPath  =     'Public'; // 设置附件上传根目录
+                $upload->savePath  =     '/upload/'; // 设置附件上传（子）目录
+                // 上传文件
+                $info   =   $upload->uploadOne($files);
+
+                if(!$info) {// 上传错误提示错误信息
+                    $this->error($upload->getError());
+                }else{// 上传成功
+                    $infoPath = $info['savepath'].$info['savename'];
+                    $data['filePath'] = $infoPath;
+                }
+            }
+
+
             if(IS_POST){
+
                 $where['gpId'] = I("post.id");
 
                 $data['gpThrId'] = session('ID');
@@ -275,12 +314,18 @@
                 $data['gpFormal'] = I("post.formal");
                 $data['gpOthers'] = I("post.others");
                 $data['gpSHState'] = I("post.SHState") == 2 ? 2 : 1;
-                $data['state'] = 1;
+                $obj = M("gproject");
+                $admin_state = $obj->where($where)->getField('admin_state');
+                if($admin_state == '-1'){
+                    $data['state'] = 0;
+                }else{
+                    $data['state'] = 1;
+                }
 
                 $time = time();
                 $data['updateTime'] = $time;
 
-                $obj = M("gproject");
+
                 if($obj->where($where)->save($data)){
                     $this->success("The subject was successfully modified", U('Teacher/bslist'));
                 }else{

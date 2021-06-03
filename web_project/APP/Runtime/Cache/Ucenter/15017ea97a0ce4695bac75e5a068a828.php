@@ -60,7 +60,7 @@
                 </div>
  
 <div class="adminme">
-    <form method="post" class="form-x" action="<?php echo U('Teacher/updateGp');?>">
+    <form method="post" class="form-x" action="<?php echo U('Teacher/updateGp');?>" enctype="multipart/form-data">
          <div class="form-group">
             <div class="label"><label for="title">Proposal topic</label></div>
             <div class="field">
@@ -98,7 +98,16 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="label"><label for="others">other</label></div>
+            <div class="label"><label for="formal">Upload file</label></div>
+            <div class="field">
+                <input type="file" name="upfile" id="inputfile">
+
+                <?php if(!empty($gpDetail['filePath'])): ?><input  readonly name="file" class="input" value="<?php echo ($gpDetail['filePath']); ?>"><?php endif; ?>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="label"><label for="others">comment</label></div>
             <div class="field">
                 <textarea class="input" name="others" rows="3" cols="30" placeholder="others"><?php echo ($gpDetail['gpOthers']); ?></textarea>
             </div>
@@ -107,23 +116,25 @@
             <div class="label"><label>Subject direction</label></div>
             <div class="field">
                 <div class="button-group radio"> 
-                    <p><label class="label_input"></label><select style="width:283px; height:28px;">
-                         <option value ="1"> COMP SCI 1104 Grand Challenges in Computer Science</option>
-                         <option value ="2"> COMP SCI 2008 Topics in Computer Science</option>
-                         <option value ="3"> COMP SCI 3020 Advanced Topics in Computer Science</option>
-                         <option value ="4"> COMP SCI 3006 Software Engineering & Project</option>
-                         <option value ="5"> COMP SCI 3310 Software Engineering & Project (Artificial Intelligence)</option>
-                         <option value ="6"> COMP SCI 3311 Software Engineering & Project (Data Science)</option>
-                         <option value ="7"> COMP SCI 3312 Software Engineering & Project (Cybersecurity)</option>
-                         <option value ="8"> COMP SCI 3313 Software Engineering & Project (Distributed Systems & Networking)</option>
-                         <option value ="9"> COMP SCI 4015A/B Computer Science Honours Research Project Part A</option>
-                         <option value ="10"> COMP SCI 4414A/B Software Engineering Honours Research Project A</option>
-                         <option value ="11"> COMP SCI 7015 Software Engineering & Project</option>
-                         <option value ="12"> COMP SCI 7096A/B Master of Software Engineering Project Part A/B</option>
-                         <option value ="13"> COMP SCI 7098 Master of Computing & Innovation Project</option>
-                         <option value ="14"> COMP SCI 7099A/B Master Computer Science Research Project - Part A/B</option>
-                         <option value ="15"> COMP SCI 7097A/B Master Data Science Research Project Part A/B </option>
-                    </select></p>
+                    <p><label class="label_input"></label>
+                        <select style="width:283px; height:28px;">
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 1104" ? 'selected="selected"' : '' ;?> value ="COMP SCI 1104"> COMP SCI 1104 Grand Challenges in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 2008" ? 'selected="selected"' : '' ;?> value ="COMP SCI 2008"> COMP SCI 2008 Topics in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3020" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3020"> COMP SCI 3020 Advanced Topics in Computer Science</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3006" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3006"> COMP SCI 3006 Software Engineering & Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3310" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3310"> COMP SCI 3310 Software Engineering & Project (Artificial Intelligence)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3311" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3311" > COMP SCI 3311 Software Engineering & Project (Data Science)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3312" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3312" > COMP SCI 3312 Software Engineering & Project (Cybersecurity)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 3313" ? 'selected="selected"' : '' ;?> value ="COMP SCI 3313" > COMP SCI 3313 Software Engineering & Project (Distributed Systems & Networking)</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 4015A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 4015A/B" > COMP SCI 4015A/B Computer Science Honours Research Project Part A</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 4414A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 4414A/B" > COMP SCI 4414A/B Software Engineering Honours Research Project A</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7015" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7015"> COMP SCI 7015 Software Engineering & Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7096A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7096A/B"> COMP SCI 7096A/B Master of Software Engineering Project Part A/B</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7098" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7098"> COMP SCI 7098 Master of Computing & Innovation Project</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7099A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7099A/B"> COMP SCI 7099A/B Master Computer Science Research Project - Part A/B</option>
+                            <option <?php echo $gpDetail['gpSHState'] == "COMP SCI 7097A/B" ? 'selected="selected"' : '' ;?> value ="COMP SCI 7097A/B"> COMP SCI 7097A/B Master Data Science Research Project Part A/B </option>
+                    </select>
+                    </p>
                 </div>
             </div>
         </div>

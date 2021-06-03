@@ -44,13 +44,18 @@
             if(isset($gpThrId) && !empty($gpThrId)){
                 $where['thrRealName'] = $gpThrId;
             }
+
             $this->assign("seachData", $seachData);
 
             $obj    = M('gproject'); // Instantiate the User object
-            $count  = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->where($where)->Count();// Query the total number of records meeting the requirements
+            $count  = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")
+                ->where($where)->Count();// Query the total number of records meeting the requirements
             $Page   = new \Think\Page($count,10);// Instantiate the total number of incoming records and the number of records displayed per page of the paging class (10)
             $show   = $Page->show();//Paging display output//Paging data query Note that the parameters of the limit method should use the attributes of the Page class
-            $bsList = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->field("gproject.*, teacher.thrRealName")->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
+            $bsList = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")
+                ->field("gproject.*, teacher.thrRealName")
+                ->where($where)->limit($Page->firstRow.','.$Page->listRows)
+                ->select();
            
             $this->assign('bsList', $bsList);//assign data set
             $this->assign('page',$show);//Assign paging output
@@ -168,12 +173,89 @@
             }else{
                 $where['gpId'] = $id;
                 $data['state'] = $flag;
+                $data['admin_state'] = $flag;
 
                 $obj = M('gproject');
                 if($obj->where($where)->save($data)){
                     $this->success('examine success');
                 }else{
                     $this->error('examine failure');
+                }
+            }
+        }
+
+        /*
+         修改页
+        */
+        public function editGP($id = 0){
+            if($id != 0){
+                $where["gpId"] = $id;
+
+                $obj = M("gproject");
+                $GpDetail = $obj->where($where)->find();
+
+
+                if(is_array($GpDetail) && !empty($GpDetail)){
+                    $this->assign("gpDetail", $GpDetail);
+                    $this->assign("title", "modify proposal");
+                    $this->assign("host",$_SERVER['SERVER_NAME']);
+
+                    $this->display("edit");
+                }else{
+                    $this->error("Operation error, please check");
+                }
+
+            }else{
+                $this->error("Operation error, please check");
+            }
+        }
+
+        /*
+
+         *  提交修改毕设
+         */
+        public function updateGp(){
+            $files = $_FILES['upfile'];
+            if(!empty($files['tmp_name'])){
+                $upload = new \Think\Upload();// 实例化上传类
+                $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// 设置附件上传类型
+                $upload->rootPath  =     'Public'; // 设置附件上传根目录
+                $upload->savePath  =     '/upload/'; // 设置附件上传（子）目录
+                // 上传文件
+                $info   =   $upload->uploadOne($files);
+
+                if(!$info) {// 上传错误提示错误信息
+                    $this->error($upload->getError());
+                }else{
+                    // 上传成功
+                    $infopath = $info['savepath'].$info['savename'];
+                    $data['filePath'] = $infopath;
+                }
+            }
+
+            if(IS_POST){
+                $where['gpId'] = I("post.id");
+
+                $data['gpThrId'] = session('ID');
+                $data['gpTitle'] = I("post.title");
+                $data['gpContent'] = I("post.content");
+                $data['gpAim'] = I("post.aim");
+                $data['gpRequest'] = I("post.request");
+                $data['gpMust'] = I("post.must");
+                $data['gpFormal'] = I("post.formal");
+                $data['gpOthers'] = I("post.others");
+                $data['gpSHState'] = I("post.SHState") == 2 ? 2 : 1;
+                $data['state'] = 1;
+
+                $time = time();
+                $data['updateTime'] = $time;
+
+                $obj = M("gproject");
+                if($obj->where($where)->save($data)){
+                    $this->success("The subject was successfully modified", U('Design/index'));
+                }else{
+                    $this->error("Subject modification failed, please check");
                 }
             }
         }
