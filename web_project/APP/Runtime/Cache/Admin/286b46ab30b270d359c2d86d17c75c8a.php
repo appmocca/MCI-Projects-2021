@@ -275,7 +275,7 @@
                     <p>Required knowledge:  <a class="gpMust" href="#"></a></p>
                     <p>Form of Submittion(optional):  <a class="gpFormal" href="#"></a></p>
                     <p>Proposal Direct:  <a class="gpSHState" href="#"></a></p>
-                    <p>Others:  <a class="gpOthers" href="#"></a></p>
+                    <p>Comment:  <a class="gpOthers" href="#"></a></p>
                     
                 </div>
             </div> 

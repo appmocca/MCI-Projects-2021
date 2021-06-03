@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title><?php echo ($titles['prt']); ?>-<?php echo ($titles['son']); ?></title>
+    <title>Admin</title>
     <meta name="keywords" content="keywords" />
     <meta name="description" content="description" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

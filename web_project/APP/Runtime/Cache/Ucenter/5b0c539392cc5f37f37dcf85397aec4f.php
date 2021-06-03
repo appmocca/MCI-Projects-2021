@@ -135,7 +135,7 @@
                 <p>Submission form(optional)：
                     <a class="gpFormal" href="#"></a>
                 </p>
-                <p>Other things：
+                <p>Comment：
                     <a class="gpOthers" href="#"></a>
                 </p>
                 <p>Subject direction：

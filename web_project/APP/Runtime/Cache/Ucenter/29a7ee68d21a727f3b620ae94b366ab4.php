@@ -106,7 +106,7 @@
         <div class="form-group">
             <div class="label"><label for="other">comment</label></div>
             <div class="field">
-                <textarea class="input" name="other" rows="3" cols="30" placeholder="other"></textarea>
+                <textarea class="input" name="other" rows="3" cols="30" placeholder="comment"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -129,6 +129,7 @@
                         <option value ="COMP SCI 7098"> COMP SCI 7098 Master of Computing & Innovation Project</option>
                         <option value ="COMP SCI 7099A/B"> COMP SCI 7099A/B Master Computer Science Research Project - Part A/B</option>
                         <option value ="COMP SCI 7097A/B"> COMP SCI 7097A/B Master Data Science Research Project Part A/B </option>
+                        <option value ="Unsure"> Unsure </option>
                     </select></p>
                 </div>
             </div>
