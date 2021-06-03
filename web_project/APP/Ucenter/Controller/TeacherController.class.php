@@ -316,7 +316,7 @@
                 $data['gpSHState'] = I("post.SHState") == 2 ? 2 : 1;
                 $obj = M("gproject");
                 $admin_state = $obj->where($where)->getField('admin_state');
-                if($admin_state == '-1'){
+                if($admin_state == '0'){
                     $data['state'] = 0;
                 }else{
                     $data['state'] = 1;

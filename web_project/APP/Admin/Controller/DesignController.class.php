@@ -236,7 +236,6 @@
 
             if(IS_POST){
                 $where['gpId'] = I("post.id");
-
                 $data['gpThrId'] = session('ID');
                 $data['gpTitle'] = I("post.title");
                 $data['gpContent'] = I("post.content");
@@ -246,7 +245,7 @@
                 $data['gpFormal'] = I("post.formal");
                 $data['gpOthers'] = I("post.others");
                 $data['gpSHState'] = I("post.SHState") == 2 ? 2 : 1;
-                $data['state'] = 1;
+                $data['state'] = 0;
 
                 $time = time();
                 $data['updateTime'] = $time;

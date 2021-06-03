@@ -48,6 +48,8 @@ CREATE TABLE `gproject` (
   `createTime` varchar(12) DEFAULT NULL COMMENT 'Creation Time',
   `updateTime` varchar(12) DEFAULT NULL COMMENT 'updateTime',
   `state` tinyint(4) DEFAULT '1' COMMENT '0fail to pass 1passed but not assigned、2passed and assigned、3passed、-1fail to pass',
+  `filePath` varchar(255) DEFAULT NULL COMMENT 'File Path',
+  `admin_state` tinyint(4) DEFAULT '0' COMMENT '1passed but not assigned、-1fail to pass',
   PRIMARY KEY (`gpId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 

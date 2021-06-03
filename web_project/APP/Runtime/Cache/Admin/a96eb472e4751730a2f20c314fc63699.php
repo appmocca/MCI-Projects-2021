@@ -193,10 +193,9 @@
             <div class="label"><label for="formal">Upload file</label></div>
             <div class="field">
                 <input type="file" name="upfile" id="upfile">
-              
+
                 <?php if(!empty($gpDetail.filePath)): ?><!--<a class="button" href="/Public/.<?php echo ($gpDetail['filePath']); ?>">下载文件</a>-->
                     <input  readonly name="file" class="input" value="<?php echo ($gpDetail['filePath']); ?>"><?php endif; ?>
-
             </div>
 
         </div>
