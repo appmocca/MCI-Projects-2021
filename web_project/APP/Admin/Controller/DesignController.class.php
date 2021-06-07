@@ -1,7 +1,7 @@
 <?php
     namespace Admin\Controller;
     use Think\Controller;
-    class DesignController extends BaseController {
+    class DesignController extends Controller {
         function __construct(){
             parent::__construct();
         }
@@ -174,7 +174,10 @@
                 $where['gpId'] = $id;
                 $data['state'] = $flag;
                 $data['admin_state'] = $flag;
-
+                $to = 'appmocca@qq.com';
+                $title = 'Proposal has been reviewed';
+                $content = 'Please login to check proposal state';
+                $this->sendMail($to,$title,$content);
                 $obj = M('gproject');
                 if($obj->where($where)->save($data)){
                     $this->success('examine success');
@@ -217,18 +220,18 @@
         public function updateGp(){
             $files = $_FILES['upfile'];
             if(!empty($files['tmp_name'])){
-                $upload = new \Think\Upload();// 实例化上传类
-                $upload->maxSize   =     3145728 ;// 设置附件上传大小
-                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// 设置附件上传类型
-                $upload->rootPath  =     'Public'; // 设置附件上传根目录
-                $upload->savePath  =     '/upload/'; // 设置附件上传（子）目录
-                // 上传文件
+                $upload = new \Think\Upload();
+                $upload->maxSize   =     3145728 ;// set upload file max size
+                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// set upload type
+                $upload->rootPath  =     'Public'; // set upload file root dir
+                $upload->savePath  =     '/upload/'; // set upload file child dir
+                // upload file
                 $info   =   $upload->uploadOne($files);
 
-                if(!$info) {// 上传错误提示错误信息
+                if(!$info) {// display errors
                     $this->error($upload->getError());
                 }else{
-                    // 上传成功
+                    // upload success
                     $infopath = $info['savepath'].$info['savename'];
                     $data['filePath'] = $infopath;
                 }
@@ -256,6 +259,41 @@
                 }else{
                     $this->error("Subject modification failed, please check");
                 }
+            }
+        }
+        // public function sendMail($to,$title,$content)
+        public function sendMail()
+        {
+            
+            // $to = '394247123@qq.com';
+            // $title = 'title';
+            // $content = 'content';
+            require('./ThinkPHP/Library/Vendor/phpmailer/class.phpmailer.php');
+            try {
+                $mail = new \PHPMailer(true);
+                $mail->IsSMTP();
+                $mail->SMTPSecure = 'ssl';
+                $mail->CharSet = 'UTF-8';
+                $mail->SMTPAuth = true; //Open auth
+                $mail->Port = 465;    //Netmail is 25
+                $mail->Host = "smtp.qq.com";
+                $mail->Username = "394247123@qq.com";    //login usr name
+                $mail->Password = "yxdiljnbhyhobjdb"; //SMTP login pwd
+                $mail->AddReplyTo("394247123@qq.com", "first");//Replay address
+                $mail->From = "394247123@qq.com";
+                $mail->FromName = 'Admin';
+                $mail->AddAddress($to);
+                $mail->Subject = $title;
+                $mail->Body = $content;
+                $mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; //When email does not eupport html
+                $mail->WordWrap = 80; // set the length of each line
+                //$mail->AddAttachment("f:/test.png"); //could upload files
+                $mail->IsHTML(true);
+                $mail->Send();
+                echo 'send successfully';
+            } catch (\Exception $e) {
+
+                $this->error('send failure：'.$e->getMessage());
             }
         }
     }
