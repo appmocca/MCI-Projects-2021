@@ -261,8 +261,8 @@
                 }
             }
         }
-        // public function sendMail($to,$title,$content)
-        public function sendMail()
+        public function sendMail($to,$title,$content)
+        // public function sendMail()
         {
             
             // $to = '394247123@qq.com';
