@@ -1,7 +1,7 @@
 <?php
     namespace Admin\Controller;
     use Think\Controller;
-    class DesignController extends Controller {
+    class DesignController extends BaseController {
         function __construct(){
             parent::__construct();
         }
