@@ -180,9 +180,9 @@
                 $this->sendMail($to,$title,$content);
                 $obj = M('gproject');
                 if($obj->where($where)->save($data)){
-                    $this->success('examine success');
+                    $this->success('Action Success');
                 }else{
-                    $this->error('examine failure');
+                    $this->error('Action Failure');
                 }
             }
         }

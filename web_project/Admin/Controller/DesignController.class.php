@@ -46,14 +46,13 @@
             }
             $this->assign("seachData", $seachData);
 
-            $obj    = M('gproject'); // 实例化User对象
-            $count  = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->where($where)->Count();// 查询满足要求的总记录数
-            $Page   = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-            $show   = $Page->show();// 分页显示输出// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+            $obj    = M('gproject'); // Instantiate the User object
+            $count  = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->where($where)->Count();// Query the total number of records meeting the requirements
+            $Page   = new \Think\Page($count,10);// Instantiate the total number of incoming records and the number of records 
+            $show   = $Page->show();// Paging display output//Paging data query Note that the parameters of the limit method should use the attributes of the Page class
             $bsList = $obj->join("left join teacher on gproject.gpThrId = teacher.thrId")->field("gproject.*, teacher.thrRealName")->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
-            $this->assign('bsList', $bsList);// 赋值数据集
-            $this->assign('page',$show);// 赋值分页输出
-
+            $this->assign('bsList', $bsList);//assign data set
+            $this->assign('page',$show);//Assign paging output
             $this->display();
         }
 
@@ -210,18 +209,18 @@
         public function updateGp(){
             $files = $_FILES['upfile'];
             if(!empty($files['tmp_name'])){
-                $upload = new \Think\Upload();// 实例化上传类
-                $upload->maxSize   =     3145728 ;// 设置附件上传大小
-                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// 设置附件上传类型
-                $upload->rootPath  =     'Public'; // 设置附件上传根目录
-                $upload->savePath  =     '/upload/'; // 设置附件上传（子）目录
-                // 上传文件
+                $upload = new \Think\Upload();
+                $upload->maxSize   =     3145728 ;// set upload file max size
+                $upload->exts      =     array('pdf','docx','doc','jpg','png', 'jpeg');// set upload type
+                $upload->rootPath  =     'Public'; // set upload file root dir
+                $upload->savePath  =     '/upload/'; // set upload file child dir
+                // upload file
                 $info   =   $upload->uploadOne($files);
 
-                if(!$info) {// 上传错误提示错误信息
+                if(!$info) {// display errors
                     $this->error($upload->getError());
                 }else{
-                    // 上传成功
+                    // upload success
                     $infopath = $info['savepath'].$info['savename'];
                     $data['filePath'] = $infopath;
                 }
