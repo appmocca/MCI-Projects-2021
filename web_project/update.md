@@ -9,3 +9,4 @@
 
 07.06.2021 updates by Yifei Xu
 1.	Enabling send auto email when admin pass or reject a proposal, then cliens could receive an notification.
+2.	Changed layout & removed gender display column
