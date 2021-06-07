@@ -12,9 +12,9 @@
          */
         public function index($gpThrId = null, $gpContent = null, $state = null, $gpSHState = null){
             $titles = array();
-            $titles['prt'] = "project of Team05";
+            $titles['prt'] = "proposal";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "login info";
+            $titles['son'] = "proposal list";
             $this->assign("titles", $titles);
 
             $where = array();

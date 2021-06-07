@@ -3,19 +3,19 @@
         <div class="panel admin-panel">
             <div class="panel-head">
                 <input type="button" class="button button-small border-green" value="Add new students" onclick="javascript:window.location.href='{:U('Student/add')}';" />
-                <input type="button" class="button button-small border-blue" value="recycle bin" onclick="javascript:window.location.href='{:U('Student/recycle')}'" />
+                <input type="button" class="button button-small border-blue" value="Recycle Bin" onclick="javascript:window.location.href='{:U('Student/recycle')}'" />
             </div>
             <div class="padding border-bottom">
                 <form action="{:U('Student/index')}" class="form-inline">
                     <div class="form-group">
-                        <div class="label"><label for="stuCard">student number</label></div>
+                        <div class="label"><label for="stuCard">Student Number</label></div>
                         <div class="field">
                             <input type="text" class="input" id="stuCard" name="stuCard" size="12" value="<?php echo isset($seachData['stuCard']) && !empty($seachData['stuCard']) ? $seachData['stuCard'] : '';?>" placeholder="Student student number" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="stuName">(full) name</label></div>
+                        <div class="label"><label for="stuName">Name</label></div>
                         <div class="field">
                             <input type="text" class="input" id="stuName" name="stuName" size="12" value="<?php echo isset($seachData['stuName']) && !empty($seachData['stuName']) ? $seachData['stuName'] : '';?>" placeholder="Student name" />
                         </div>
@@ -35,7 +35,7 @@
                     &nbsp;
                     &nbsp;
                     <div class="form-button">
-                        <button class="button bg-green" type="submit">retrieve</button>
+                        <button class="button bg-green" type="submit">Search</button>
                     </div>
                 </form>
             </div>

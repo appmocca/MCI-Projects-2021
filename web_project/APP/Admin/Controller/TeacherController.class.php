@@ -12,9 +12,9 @@
          */
         public function index($thrCard = null, $thrName = null, $thrSex = null, $thrMajor = null){
             $titles = array();
-            $titles['prt'] = "teacher ";
+            $titles['prt'] = "client ";
             $titles['prtLink'] = CONTROLLER_NAME;
-            $titles['son'] = "teacher list";
+            $titles['son'] = "client list";
             $this->assign("titles", $titles);
 
             $obj = M("major");
