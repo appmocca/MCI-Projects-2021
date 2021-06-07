@@ -22,17 +22,6 @@
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="stuSex">Student gender</label></div>
-                        <div class="field">
-                            <select class="input" name="stuSex" id="stuSex">
-                                <option value="">Please choose</option> 
-                                <option <?php echo $seachData['stuSex'] == 1 ? 'selected="selected"' : '' ;?> value="1">male</option>
-                                <option <?php echo $seachData['stuSex'] == 2 ? 'selected="selected"' : '' ;?> value="2">female</option>
-                            </select>
-                        </div>
-                    </div>
-                    &nbsp;
-                    <div class="form-group">
                         <div class="label"><label for="stuMajor">Student specialty</label></div>
                         <div class="field">
                             <select class="input" name="stuMajor" id="stuMajor">
@@ -52,27 +41,23 @@
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="140">student number</th>
-                    <th width="140">(full) name</th>
-                    <th width="110">gender</th>
-                    <th width="120">contact way</th>
-                    <th width="*">Professional name</th>
-                    <th width="180">operate</th>
+                    <th width="140">Student Number</th>
+                    <th width="140">Name</th>
+                    <th width="120">Contact Number</th>
+                    <th width="*">Major</th>
+                    <th width="300">Operation</th>
                 </tr>
                 <volist name="usrList" id="index">
                 <tr>
                     <td>{$index.stuCard}</td>
                     <td>{$index.stuRealName}</td>
-                    <td>
-                        <?php echo $index['stuSex'] == 1 ? '男' : '女'; ?>
-                    </td>
                     <td>{$index.stuPhone}</td>
                     <td>{$index.majorName}</td>
                     <td>
                         <input type="hidden" name="id" value="{$index.stuId}"/>
-                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">examine</a>
-                        <a class="button border-blue button-little" name="reset" href="#">Reset password</a>
-                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">delete</a>
+                        <a class="button border-yellow button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="30%">Check</a>
+                        <a class="button border-blue button-little" name="reset" href="#">Reset Password</a>
+                        <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">Delete</a>
                     </td>
                 </tr>
                 </volist>
@@ -89,17 +74,16 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>Student details</strong> 
+                <strong>Student Details</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>Student student number：  <a class="stuCard" href="#"></a></p>
+                    <p>Student Number：  <a class="stuCard" href="#"></a></p>
                     <p>Real name：  <a class="stuRealName" href="#"></a></p>
-                    <p>Student specialty：  <a class="majorName" href="#"></a></p>
-                    <p>Student gender：  <a class="stuSex" href="#"></a></p>
-                    <p>Age of students：  <a class="stuAge" href="#"></a></p>
-                    <p>contact way：  <a class="stuPhone" href="#"></a></p>
-                    <p>e-mail address：  <a class="stuEmail" href="#"></a></p>
+                    <p>Major：  <a class="majorName" href="#"></a></p>
+                    <p>Age：  <a class="stuAge" href="#"></a></p>
+                    <p>Contact Number：  <a class="stuPhone" href="#"></a></p>
+                    <p>E-mail Address：  <a class="stuEmail" href="#"></a></p>
                 </div>
             </div> 
         </div> 
@@ -109,15 +93,14 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>Student operation</strong> 
+                <strong>Operation</strong> 
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
                     <p>Are you sure you want to delete this student?</p>
-                    <p>O(∩_∩)O~~(Is a recoverable deletion)</p>
                 </div>
                 <input type="button" class="button bg-main" value="delete" onclick="javascript:recycle();" />
-                <button class="button bg-yellow" type="reset">regtet</button>
+                <button class="button bg-yellow" type="reset">back</button>
             </div> 
         </div> 
     </div>
