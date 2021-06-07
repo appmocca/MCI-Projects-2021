@@ -3,20 +3,20 @@
         <div class="xm3">
             <div class="panel border-back">
                 <div class="panel-body text-center">
-                    <img src="__IMG__/sex_a.jpg" width="120" class="radius-circle" /><br />
-                    admin
+                    <img src="__IMG__/sex_a.jpg" width="120" class="radius-circle" /><br /> admin
                 </div>
-                <div class="panel-foot bg-back border-back">&nbsp;<br/>Hi，<?php echo session("NAME"); ?><br/>&nbsp;</div>
+                <div class="panel-foot bg-back border-back">&nbsp;<br/>Hi,
+                    <?php echo session("NAME"); ?><br/>&nbsp;</div>
             </div>
             <br />
             <div class="panel">
                 <div class="panel-head"><strong>Site statistics</strong></div>
                 <ul class="list-group">
                     <li><span class="float-right badge bg-red">{$CLists.usr}</span><span class="icon-user"></span> User</li>
-                    <li><span class="float-right badge bg-main">{$CLists.teacher}</span><span class="icon-file"></span> Teacher</li>
+                    <li><span class="float-right badge bg-main">{$CLists.teacher}</span><span class="icon-file"></span> Client</li>
                     <li><span class="float-right badge bg-main">{$CLists.student}</span><span class="icon-shopping-cart"></span> Student</li>
                     <li><span class="float-right badge bg-main">{$CLists.message}</span><span class="icon-file-text"></span> Message</li>
-                    <li><span class="float-right badge bg-main">{$CLists.gp}</span><span class="icon-database"></span> project of Team05</li>
+                    <li><span class="float-right badge bg-main">{$CLists.gp}</span><span class="icon-database"></span> Proposal</li>
                 </ul>
             </div>
             <br />
@@ -25,21 +25,24 @@
             <div class="alert alert-yellow"><span class="close"></span><strong>Attention：</strong>You have 0 unread messages，<a href="#">click to view</a>。</div>
             <div class="alert">
                 <h4>proposal manage system introduction</h4>
-                <p class="text-gray padding-top">proposal manage system，dynamic website technology<br/>Gathering teacher infomation、student infomation、proposal infomation and relavant date，方便 admin manage data quickly </p>
+                <p class="text-gray padding-top">proposal manage system，dynamic website technology<br/>Gathering teacher infomation、student infomation、proposal infomation and relavant date，admin is able to manage data quickly </p>
                 <?php if(session("state") != 3): ?>
-                <a target="_blank" class="button bg-dot icon-user" href="{:U('Teacher/index')}"> Teacher manage </a> 
+                <a target="_blank" class="button bg-dot icon-user" href="{:U('Teacher/index')}"> Client</a>
                 <?php endif; ?>
                 <?php if(session("state") != 2): ?>
-                <a target="_blank" class="button bg-main icon-file-text" href="{:U('Student/index')}"> Student manage </a>
+                <a target="_blank" class="button bg-main icon-file-text" href="{:U('Student/index')}"> Student</a>
                 <?php endif; ?>
                 <?php if(session("state") == 1): ?>
-                <a target="_blank" class="button border-main icon-code" href="{:U('Design/index')}"> Proposal manage </a>
+                <a target="_blank" class="button border-main icon-code" href="{:U('Design/index')}"> Proposal</a>
                 <?php endif; ?>
             </div>
             <div class="panel">
                 <div class="panel-head"><strong>system infomation</strong></div>
                 <table class="table">
-                    <tr><th colspan="2"> Servers infomation</th><th colspan="2">system infomation</th></tr>
+                    <tr>
+                        <th colspan="2"> Servers infomation</th>
+                        <th colspan="2">system infomation</th>
+                    </tr>
                     <tr>
                         <td width="120" align="right">Operating system：</td>
                         <td>{$system['os']}</td>
