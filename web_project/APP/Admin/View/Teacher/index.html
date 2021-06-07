@@ -8,14 +8,14 @@
             <div class="padding border-bottom">
                 <form action="{:U('Teacher/index')}" class="form-inline">
                     <div class="form-group">
-                        <div class="label"><label for="thrCard">Client number</label></div>
+                        <div class="label"><label for="thrCard">Client number&nbsp;</label></div>
                         <div class="field">
                             <input type="text" class="input" id="thrCard" name="thrCard" size="12" value="<?php echo isset($seachData['thrCard']) && !empty($seachData['thrCard']) ? $seachData['thrCard'] : '';?>" placeholder="Teacher's number" />
                         </div>
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <div class="label"><label for="thrName">Client Name</label></div>
+                        <div class="label"><label for="thrName">Client Name&nbsp;</label></div>
                         <div class="field">
                             <input type="text" class="input" id="thrName" name="thrName" size="12" value="<?php echo isset($seachData['thrName']) && !empty($seachData['thrName']) ? $seachData['thrName'] : '';?>" placeholder="Teacher's name" />
                         </div>
@@ -28,7 +28,7 @@
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="80">Teacher Number</th>
+                    <th width="80">Client Number</th>
                     <th width="120">Login Account</th>
                     <th width="140">Real Name</th>
                     <th width="140">Contact Number</th>
@@ -40,9 +40,6 @@
                     <td>{$index.thrId}</td>
                     <td>{$index.thrName}</td>
                     <td>{$index.thrRealName}</td>
-                    <td>
-                        <?php echo $index['thrSex'] == 1 ? 'male' : 'female'; ?>
-                    </td>
                     <td>{$index.thrPhone}</td>
                     <td>{$index.thrStudy}</td>
                     <td>
