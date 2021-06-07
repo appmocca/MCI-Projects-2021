@@ -25,8 +25,8 @@
                         <div class="field">
                             <select class="input" name="state" id="state">
                                 <option value="">Please choose</option>
-                                <option <?php echo $seachData['state'] == -1 ? 'selected="selected"' : '' ;?> value="-1">Wait for examining</option>
-                                <option <?php echo $seachData['state'] == 1 ? 'selected="selected"' : '' ;?> value="1">Examined</option>
+                                <option <?php echo $seachData['state'] == -1 ? 'selected="selected"' : '' ;?> value="-1">Wait for review</option>
+                                <option <?php echo $seachData['state'] == 1 ? 'selected="selected"' : '' ;?> value="1">Reviewed</option>
                                 <option <?php echo $seachData['state'] == 3 ? 'selected="selected"' : '' ;?> value="3">Assigned</option>
                             </select>
                         </div>
@@ -67,15 +67,15 @@
                     <td>{$index.gpMust}</td>
                     <td>
                         <if condition="$index.state eq 0">
-                            Wait for examining
+                            Wait for review
                          <elseif condition="$index.state eq 1"/>
-                            Passed exmination
+                            Passed
                         <elseif condition="$index.state eq 2"/>
-                            Passed exmination
+                            Passed
                         <elseif condition="$index.state eq 3"/>
                             Confirmed
                          <elseif condition="$index.state eq -1"/>
-                            Didn't passed exmination
+                            Rejected
                         </if> 
                     </td>
                     <td>{$index.thrRealName}</td>
@@ -84,7 +84,7 @@
                         <a class="button border-blue button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="50%">View</a>
                         <if condition="$index.state eq 0">
 
-                        <a class="button border-red button-little dialogs" name="shenhe" href="#" data-toggle="click" data-target="#myshenhe" data-mask="1" data-width="30%">Examnation</a>
+                        <a class="button border-red button-little dialogs" name="shenhe" href="#" data-toggle="click" data-target="#myshenhe" data-mask="1" data-width="30%">Action</a>
                         <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">Delete</a>
                         </if>
                     </td>
@@ -130,10 +130,9 @@
             <div class="dialog-body">
                 <div class="form-group">
                     <p>Comfirming to delete proposal</p>
-                    <p>O(∩_∩)O~~(Restorable)</p>
                 </div>
                 <input type="button" class="button bg-main" value="delete" onclick="javascript:del();" />
-                <button class="button bg-yellow" type="reset">regret</button>
+                <button class="button bg-yellow" type="reset">Back</button>
             </div> 
         </div> 
     </div>
@@ -142,18 +141,18 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>Proposal Examnation</strong> 
+                <strong>Proposal Review</strong> 
             </div> 
             <div class="dialog-body">
                     <div class="form-group">
-                        <p>This proposal has not been examined，please examine:</p>
+                        <p>This proposal has not been reviewed，please review:</p>
                     </div>
                     <br/>
                     <br/>
                     <div class="form-button">
                         <input type="button" class="button bg-main" value="Examnation passed" onclick="javascript:shenhe(1);" />
                         <input type="button" class="button bg-blue" value="Didn't passed exmination" onclick="javascript:shenhe(-1);" />
-                        <button class="button bg-yellow" type="reset">Rethink</button>
+                        <button class="button bg-yellow" type="reset">Back</button>
                     </div>
             </div> 
         </div> 
