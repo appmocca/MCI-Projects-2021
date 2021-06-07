@@ -30,19 +30,19 @@
             <div class="mainer">
                 <div class="admin-navbar">
                     <span class="float-right">
-                	<a class="button button-little bg-main" href="{:U('Admin/index')}" target="_blank">Front desk homepage</a>
-                    <a class="button button-little bg-yellow" href="{:U('Admin/loginout')}">Log off login</a>
+                	<a class="button button-little bg-main" href="{:U('Admin/index')}" target="_blank">Homepage</a>
+                    <a class="button button-little bg-yellow" href="{:U('Admin/loginout')}">Log off</a>
                 </span>
                     <ul class="nav nav-inline admin-nav">
                         <li class="<?php echo $flag['prt'] == 'admin' ? 'active' : '';?>">
-                            <a href="{:U('Admin/index')}" class="icon-home"> begin</a>
+                            <a href="{:U('Admin/index')}" class="icon-home"> Home</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'admin_index' ? 'active' : '';?>">
                                     <a href="{:U('Admin/index')}">Login information</a>
                                 </li>
                                 <?php if(session("state") != 3): ?>
                                 <li class="<?php echo $flag['son'] == 'teacher_index' ? 'active' : '';?>">
-                                    <a href="{:U('Teacher/index')}">Teacher management</a>
+                                    <a href="{:U('Teacher/index')}">Client management</a>
                                 </li>
                                 <?php endif; ?>
                                 <?php if(session("state") != 2): ?>
@@ -58,17 +58,17 @@
                                     <a href="{:U('Msg/index')}">Message management</a>
                                 </li>
                                 <li class="<?php echo $flag['son'] == 'usr_index' ? 'active' : '';?>">
-                                    <a href="{:U('Usr/index')}">user management</a>
+                                    <a href="{:U('Usr/index')}">User management</a>
                                 </li>
                                 <?php endif; ?>
                             </ul>
                         </li>
                         <?php if(session("state") != 3): ?>
                         <li class="<?php echo $flag['prt'] == 'teacher' ? 'active' : '';?>">
-                            <a href="{:U('Teacher/index')}" class="icon-user"> teacher</a>
+                            <a href="{:U('Teacher/index')}" class="icon-user"> Client</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'teacher_index' ? 'active' : '';?>">
-                                    <a href="{:U('Teacher/index')}">Teacher list</a>
+                                    <a href="{:U('Teacher/index')}">Client list</a>
                                 </li>
                                 <li class="<?php echo $flag['son'] == 'teacher_add' ? 'active' : '';?>">
                                     <a href="{:U('Teacher/add')}">New teachers</a>
@@ -81,7 +81,7 @@
                         <?php endif; ?>
                         <?php if(session("state") != 2): ?>
                         <li class="<?php echo $flag['prt'] == 'student' ? 'active' : '';?>">
-                            <a href="{:U('Student/index')}" class="icon-file-text"> student</a>
+                            <a href="{:U('Student/index')}" class="icon-file-text"> Student</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'student_index' ? 'active' : '';?>">
                                     <a href="{:U('Student/index')}">Student list</a>
@@ -97,7 +97,7 @@
                         <?php endif; ?>
                         <?php if(session("state") == 1): ?>
                         <li class="<?php echo $flag['prt'] == 'design' ? 'active' : '';?>">
-                            <a href="{:U('Design/index')}" class="icon-file"> proposal</a>
+                            <a href="{:U('Design/index')}" class="icon-file"> Proposal</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'design_index' ? 'active' : '';?>">
                                     <a href="{:U('Design/index')}">proposal list</a>
@@ -108,7 +108,7 @@
                             </ul>
                         </li>
                         <li class="<?php echo $flag['prt'] == 'msg' ? 'active' : '';?>">
-                            <a href="{:U('Msg/index')}" class="icon-cog"> message</a>
+                            <a href="{:U('Msg/index')}" class="icon-cog"> Message</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'msg_index' ? 'active' : '';?>">
                                     <a href="{:U('Msg/index')}">message list</a>
@@ -119,7 +119,7 @@
                             </ul>
                         </li>
                         <li class="<?php echo $flag['prt'] == 'usr' ? 'active' : '';?>">
-                            <a href="{:U('Usr/index')}" class="icon-th-list"> user</a>
+                            <a href="{:U('Usr/index')}" class="icon-th-list"> User</a>
                             <ul>
                                 <li class="<?php echo $flag['son'] == 'usr_index' ? 'active' : '';?>">
                                     <a href="{:U('Usr/index')}">User list</a>
@@ -139,15 +139,15 @@
                     <span>Hello,<?php echo session("NAME");?>(
                     <?php 
                         if(session("state") == 1){
-                            $t = "Super administrator";
+                            $t = "admin";
                         }else if(session("state") == 2){
-                            $t = "Teacher administrator";
+                            $t = "Teacher admin";
                         }else if(session("state") == 3){
-                            $t = "Student administrator";
+                            $t = "Student admin";
                         }
-                        echo $t;?>)&nbsp;&nbsp;&nbsp;&nbsp;Welcome your presence.</span>
+                        echo $t;?>)&nbsp;&nbsp;&nbsp;&nbsp;Welcome</span>
                     <ul class="bread">
-                        <li><a href="{:U('Admin/index')}" class="icon-home"> begin</a></li>
+                        <li><a href="{:U('Admin/index')}" class="icon-home"> home</a></li>
                         <if condition="$titles['prt'] eq null">
                             <else />
                             <li><a href="/bs/admin.php/{$titles['prtLink']}/index.html">{$titles['prt']}</a></li>
