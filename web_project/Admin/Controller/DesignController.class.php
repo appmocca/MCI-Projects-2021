@@ -169,9 +169,9 @@
 
                 $obj = M('gproject');
                 if($obj->where($where)->save($data)){
-                    $this->success('examination passed');
+                    $this->success('Proposal Passed');
                 }else{
-                    $this->error('examination fail');
+                    $this->error('Proposal Rejected');
                 }
             }
         }
