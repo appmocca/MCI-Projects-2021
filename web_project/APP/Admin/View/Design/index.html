@@ -7,9 +7,9 @@
             <div class="padding border-bottom">
                 <form action="{:U('Design/index')}" class="form-inline">
                     <div class="form-group">
-                        <div class="label"><label for="gpThrId">Supervised professor &nbsp</label></div>
+                        <div class="label"><label for="gpThrId">Supervised Proposer &nbsp</label></div>
                         <div class="field">
-                            <input type="text" class="input" id="gpThrId" name="gpThrId" size="12" value="<?php echo isset($seachData['gpThrId']) && !empty($seachData['gpThrId']) ? $seachData['gpThrId'] : '';?>" placeholder="Professor" />
+                            <input type="text" class="input" id="gpThrId" name="gpThrId" size="12" value="<?php echo isset($seachData['gpThrId']) && !empty($seachData['gpThrId']) ? $seachData['gpThrId'] : '';?>" placeholder="Proposer" />
                         </div>
                     </div>
                     &nbsp;
@@ -25,8 +25,8 @@
                         <div class="field">
                             <select class="input" name="state" id="state">
                                 <option value="">Please choose</option>
-                                <option <?php echo $seachData['state'] == -1 ? 'selected="selected"' : '' ;?> value="-1">Wait for examining</option>
-                                <option <?php echo $seachData['state'] == 1 ? 'selected="selected"' : '' ;?> value="1">Examined</option>
+                                <option <?php echo $seachData['state'] == -1 ? 'selected="selected"' : '' ;?> value="-1">Wait for review</option>
+                                <option <?php echo $seachData['state'] == 1 ? 'selected="selected"' : '' ;?> value="1">Reviewed</option>
                                 <option <?php echo $seachData['state'] == 3 ? 'selected="selected"' : '' ;?> value="3">Assigned</option>
                             </select>
                         </div>
@@ -64,13 +64,13 @@
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th width="80">Proposal ID</th>
-                    <th width="110">Name of Proposal</th>
+                    <th width="100">Proposal ID</th>
+                    <th width="140">Name of Proposal</th>
                     <th width="*">Proposal Content</th>
                     <th width="160">Required knowledge</th>
                     <th width="140">Proposal Status</th>
-                    <th width="80">Supervised professor</th>
-                    <th width="140">Operation</th>
+                    <th width="80">Supervised Proposer</th>
+                    <th width="300">Operation</th>
                 </tr>
                 <volist name="bsList" id="index">
                 <tr>
@@ -80,25 +80,25 @@
                     <td>{$index.gpMust}</td>
                     <td>
                         <if condition="$index.state eq 0">
-                            Wait for examining
+                            Wait for review
                          <elseif condition="$index.state eq 1"/>
-                            Passed exmination
+                            Passed
                         <elseif condition="$index.state eq 2"/>
-                            Passed exmination
+                            Passed
                         <elseif condition="$index.state eq 3"/>
                             Confirmed
                          <elseif condition="$index.state eq -1"/>
-                            Didn't passed exmination
+                            Rejected
                         </if> 
                     </td>
                     <td>{$index.thrRealName}</td>
                     <td>
                         <input type="hidden" name="id" value="{$index.gpId}"/>
                         <a class="button border-blue button-little dialogs" name="check" href="#" data-toggle="click" data-target="#checkdialog" data-mask="1" data-width="50%">View</a>
-                        <a class="button border-black button-little" name="modify" href="#">modify</a>
+                        <a class="button border-black button-little" name="modify" href="#">Modify</a>
                         <if condition="$index.state eq 0">
 
-                        <a class="button border-red button-little dialogs" name="shenhe" href="#" data-toggle="click" data-target="#myshenhe" data-mask="1" data-width="30%">Examnation</a>
+                        <a class="button border-red button-little dialogs" name="shenhe" href="#" data-toggle="click" data-target="#myshenhe" data-mask="1" data-width="30%">Action</a>
                         <a class="button border-green button-little dialogs" name="delete" href="#" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="30%">Delete</a>
                         </if>
                     </td>
@@ -121,7 +121,7 @@
             </div> 
             <div class="dialog-body">
                 <div class="form-group">
-                    <p>Supervised professor:  <a class="thrRealName" href="#"></a></p>
+                    <p>Supervised Proposer:  <a class="thrRealName" href="#"></a></p>
                     <p>Proposal ID:  <a class="gpId" href="#"></a></p>
                     <p>Proposal title:  <a class="gpTitle" href="#"></a></p>
                     <p>Proposal Content:  <a class="gpContent" href="#"></a></p>
@@ -129,7 +129,7 @@
                     <p>Proposal outcomes:  <a class="gpRequest" href="#"></a></p>
                     <p>Required knowledge:  <a class="gpMust" href="#"></a></p>
                     <p>Form of Submittion(optional):  <a class="gpFormal" href="#"></a></p>
-                    <p>Proposal Direct:  <a class="gpSHState" href="#"></a></p>
+                    <p>Proposal Direction:  <a class="gpSHState" href="#"></a></p>
                     <p>Comment:  <a class="gpOthers" href="#"></a></p>
                     
                 </div>
@@ -146,10 +146,9 @@
             <div class="dialog-body">
                 <div class="form-group">
                     <p>Comfirming to delete proposal</p>
-                    <p>O(∩_∩)O~~(Restorable)</p>
                 </div>
                 <input type="button" class="button bg-main" value="delete" onclick="javascript:del();" />
-                <button class="button bg-yellow" type="reset">regret</button>
+                <button class="button bg-yellow" type="reset">Back</button>
             </div> 
         </div> 
     </div>
@@ -158,18 +157,18 @@
         <div class="dialog"> 
             <div class="dialog-head"> 
                 <span class="close rotate-hover"></span> 
-                <strong>Proposal Examnation</strong> 
+                <strong>Proposal Action</strong> 
             </div> 
             <div class="dialog-body">
                     <div class="form-group">
-                        <p>This proposal has not been examined，please examine:</p>
+                        <p>This proposal has not been reviewed，please review:</p>
                     </div>
                     <br/>
                     <br/>
                     <div class="form-button">
-                        <input type="button" class="button bg-main" value="Examnation passed" onclick="javascript:shenhe(1);" />
-                        <input type="button" class="button bg-blue" value="Didn't passed exmination" onclick="javascript:shenhe(-1);" />
-                        <button class="button bg-yellow" type="reset">Rethink</button>
+                        <input type="button" class="button bg-main" value="Pass" onclick="javascript:shenhe(1);" />
+                        <input type="button" class="button bg-blue" value="Reject" onclick="javascript:shenhe(-1);" />
+                        <button class="button bg-yellow" type="reset">Back</button>
                     </div>
             </div> 
         </div> 
